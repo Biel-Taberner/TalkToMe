@@ -1,2 +1,20 @@
+$blueBg: #69e0f0;
+
 // Path to Bulma's sass folder
-@use "bulma/sass"
+@use "bulma/sass" with (
+  $info: $blueBg,
+);
+
+.navbar-items-gap {
+  column-gap: 30px;
+}
+
+.navbar-item:hover, .navbar-link:hover {
+  background-color: darken($blueBg, 10%),
+}
+
+.navbar {
+  -webkit-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
+}
