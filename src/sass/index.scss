@@ -5,6 +5,10 @@ $blueBg: #69e0f0;
   $info: $blueBg,
 );
 
+.icon-text-gap {
+  column-gap: 12px;
+}
+
 .navbar-items-gap {
   column-gap: 30px;
 }
@@ -17,4 +21,8 @@ $blueBg: #69e0f0;
   -webkit-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
+}
+
+.subtitle {
+  line-height: 1.5;
 }

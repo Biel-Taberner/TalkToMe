@@ -3,7 +3,7 @@ import React from "react"
 export default function Layout() {
 
     return (
-        <nav className="navbar is-justify-content-space-between p-4 has-background-info" role="navigation" aria-label="main navigation">
+        <nav className="is-fixed-top navbar is-justify-content-space-between p-4 has-background-info" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="https://bulma.io">
                 <svg width="640" height="160" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg">
