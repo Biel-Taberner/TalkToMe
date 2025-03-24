@@ -3,10 +3,16 @@ $blueBg: #69e0f0;
 // Path to Bulma's sass folder
 @use "bulma/sass" with (
   $info: $blueBg,
+  $textarea-min-height: 200px,
+  $textarea-max-height: 300px,
 );
 
 .icon-text-gap {
   column-gap: 12px;
+}
+
+.button-icon-text-gap {
+  column-gap: 5px;
 }
 
 .navbar-items-gap {
@@ -25,4 +31,21 @@ $blueBg: #69e0f0;
 
 .subtitle {
   line-height: 1.5;
+}
+
+.dropdown-country-item {
+  transition: 0.3s;
+}
+
+.dropdown-country-item:hover {
+  background-color: darken(white, 5%);
+}
+
+.maxWidth {
+  width: 100%;
+}
+
+.dropdown-content-height {
+  max-height: 200px;
+  overflow-y: auto;
 }
