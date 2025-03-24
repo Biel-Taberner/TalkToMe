@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import reportWebVitals from './reportWebVitals.js';
+import "./i18n.js";
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(

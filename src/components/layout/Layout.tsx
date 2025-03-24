@@ -1,6 +1,43 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom";
+
+const routesInfo = [
+    {
+        name: "TalkToMe",
+        route: "/demo",
+    },
+    {
+        name: "ListenToMe",
+        route: "https://www.youtube.es/"
+    }
+]
 
 export default function Layout() {
+
+    const { t, i18n: {changeLanguage, language} } = useTranslation();
+    const [currentLanguage, setCurrentLanguage] = useState(language);
+
+    useEffect(() => {
+
+        const autoSetLanguage = () => {
+            if (localStorage.getItem("lang")) {
+                setCurrentLanguage(localStorage.getItem("lang"));
+                changeLanguage(localStorage.getItem("lang"));
+            }
+        }
+
+        autoSetLanguage();
+    }, [])
+
+    const handleLanguageChange = (langCode: string) => {
+        let currentUserLang = langCode;
+
+        localStorage.setItem("lang", currentUserLang);
+
+        setCurrentLanguage(currentUserLang)
+        changeLanguage(currentUserLang);
+    }
 
     return (
         <nav className="is-fixed-top navbar is-justify-content-space-between p-4 has-background-info" role="navigation" aria-label="main navigation">
@@ -24,32 +61,25 @@ export default function Layout() {
             <div className="navbar-menu is-flex-grow-0" id="navbarBasicExample">
                 <div className="navbar-start navbar-items-gap columns is-1">
                     <a className="navbar-item is-size-5">
-                        Home
+                        { t('home') }
                     </a>
 
                     <a className="navbar-item is-size-5">
-                        Documentation
+                        { t('documentation') }
                     </a>
 
                     <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link is-size-5">
-                        More
+                        { t('services') }
                         </a>
 
                         <div className="navbar-dropdown">
-                        <a className="navbar-item">
-                            About
-                        </a>
-                        <a className="navbar-item is-selected">
-                            Jobs
-                        </a>
-                        <a className="navbar-item">
-                            Contact
-                        </a>
-                        <hr className="navbar-divider"/>
-                        <a className="navbar-item">
-                            Report an issue
-                        </a>
+
+                            {
+                                routesInfo.map((routeInfo: Object, i) => (
+                                    <Link key={i} className="navbar-item has-text-black" to={routeInfo?.route}>{routeInfo?.name}</Link>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
@@ -57,9 +87,10 @@ export default function Layout() {
 
             <div className="navbar-menu is-flex-grow-0 is-align-items-center" id="navbarBasicExample">
                 <div className="select is-secondary">
-                    <select>
-                        <option>EN</option>
-                        <option>ES</option>
+                    <select value={currentLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
+                        <option value={"en"}>EN</option>
+                        <option value={"es"}>ES</option>
+                        <option value={"de"}>DE</option>
                     </select>
                 </div>
             </div>
