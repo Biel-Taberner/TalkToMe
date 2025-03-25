@@ -6,6 +6,8 @@ import { faPlay, faStop, faPause, faEject, faCaretDown } from '@fortawesome/free
 import SpeechInput from "../components/input/SpeechInput";
 import FuncButton from "../components/button/FuncButton";
 import BlockInfo from "../components/block/BlockInfo";
+import { Trans, useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 const speechConfigDefaults = {
   name: "",
@@ -20,12 +22,13 @@ const speechConfigDefaults = {
 const useVoices = (langCode: string) => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [languages, setLanguages] = useState<{ langCode: string; name: string }[]>([]);
+  const { i18n: {changeLanguage, language} } = useTranslation();
 
   useEffect(() => {
     const filterLanguages = () => {
       const voices = speechSynthesis.getVoices();
       const uniqueLanguages = [...new Set(voices.map(voice => voice.lang))];
-      const intlDisplay = new Intl.DisplayNames(["es"], { type: "language" });
+      const intlDisplay = new Intl.DisplayNames([language], { type: "language" });
       const languageList = uniqueLanguages.map(langCode => ({
         langCode,
         name: intlDisplay.of(langCode) || langCode,
@@ -108,9 +111,9 @@ const Render = () => {
   return (
     <div className="content mt-6">
       <section className="section">
-        <h1 className="title is-1 mt-6">Demo</h1>
+        <h1 className="title is-1 mt-6">{ t('demo_section_1_title') }</h1>
         <p className="subtitle mt-3">
-          Customize the following properties to create custom audios with different effects!
+          { t('demo_section_1_subtitle') }
         </p>
 
         <div className="is-widescreen">
@@ -123,13 +126,13 @@ const Render = () => {
                       <Flag country={speechSynthesisConfig.flagCode} />
                     </span>
                   }
-                  <span>{speechSynthesisConfig.name || 'Select language'}</span>
+                  <span>{speechSynthesisConfig.name || t('demo_section_1_dropdown_opt') }</span>
                 </div>
                 <span className="icon is-small">
                   <FontAwesomeIcon icon={faCaretDown} />
                 </span>
               </button>
-              <p className="help">If not selected, the browser's current language will be used.</p>
+              <p className="help">{ t('demo_section_1_dropdown_helper') }</p>
             </div>
             <div className="dropdown-menu maxWidth" id="dropdown-menu" role="menu">
               <div className="dropdown-content p-3 dropdown-content-height">
@@ -147,29 +150,29 @@ const Render = () => {
         <div className="mt-6">
           <div className="columns">
             <div className="column">
-              <BlockInfo title="Rate" voiceProp="speed" />
+              <BlockInfo title={t('rate')} voiceProp={t('rate').toLowerCase()} determinant={t("f_determinant")} />
               <SpeechInput showCurrentValue fieldKey="rate" type="range" minValue={0.1} maxValue={1} value={speechSynthesisConfig.rate} speechConfigKeyCallback={handleChange} isNumericValue />
             </div>
             <div className="column">
-              <BlockInfo title="Pitch" voiceProp="pitch" />
+              <BlockInfo title={t('pitch')} voiceProp={t('pitch').toLowerCase()} determinant={t("m_determinant")} />
               <SpeechInput showCurrentValue fieldKey="pitch" type="range" minValue={0} maxValue={2} value={speechSynthesisConfig.pitch} speechConfigKeyCallback={handleChange} isNumericValue />
             </div>
           </div>
-          <BlockInfo title="Volume" voiceProp="volume" />
+          <BlockInfo title={t('volume')} voiceProp={t('volume').toLowerCase()} determinant={t("m_determinant")} />
           <SpeechInput showCurrentValue fieldKey="volume" type="range" minValue={0} maxValue={1} value={speechSynthesisConfig.volume} speechConfigKeyCallback={handleChange} isNumericValue />
         </div>
 
         <div className="mt-6">
-          <BlockInfo title="Voice" voiceProp="voice" />
+          <BlockInfo title={t('voice')} voiceProp={t('voice').toLowerCase()} determinant={t("f_determinant")} />
           <div className="is-widescreen">
             <div className={`dropdown maxWidth ${dropdownVoices ? 'is-active' : ''}`} onClick={() => setDropdownVoices(!dropdownVoices)}>
               <div className="dropdown-trigger maxWidth">
                 <button className="button maxWidth is-justify-content-space-between" aria-haspopup="true" aria-controls="dropdown-menu">
                   <div className="is-flex icon-text-gap">
-                    <span>{speechSynthesisConfig.voice?.voiceURI || 'Select voice'}</span>
+                    <span>{speechSynthesisConfig.voice?.voiceURI || t('demo_section_2_voice_dropdown_text')}</span>
                   </div>
                 </button>
-                <p className="help">The voice used will be the default available for the utterance's language if not set.</p>
+                <p className="help">{ t('demo_section_2_voice_dropdown_helper') }</p>
               </div>
               <div className="dropdown-menu maxWidth" id="dropdown-menu" role="menu">
                 <div className="dropdown-content p-3 dropdown-content-height">
@@ -179,7 +182,7 @@ const Render = () => {
                     </div>
                   )) : 
                     <div className="p-2 is-flex is-justify-content-start">
-                      <p className="has-text-black is-italic has-text-grey">No voices available for the selected language.</p>
+                      <p className="has-text-black is-italic has-text-grey">{ t('demo_section_2_voice_dropdown_no_opts') }</p>
                     </div>
                   }
                 </div>
@@ -189,14 +192,16 @@ const Render = () => {
         </div>
 
         <div className="mt-6">
-          <div className="title">Content</div>
-          <textarea className="textarea" placeholder="e.g. Hello world" value={textToSpeak} onChange={(e) => setTextToSpeak(e.target.value)} />
+          <div className="title">
+            { t('content') }
+          </div>
+          <textarea className="textarea" placeholder={ t('demo_section_3_textarea_placeholder') } value={textToSpeak} onChange={(e) => setTextToSpeak(e.target.value)} />
         </div>
 
         <div className="buttons mt-5">
-          <FuncButton color="is-success" isOutlined icon={faPlay} text="Play" callback={() => handleAudioControl('play', paused, textToSpeak, speechSynthesisConfig)} />
-          <FuncButton color="is-warning" isOutlined icon={faPause} text="Pause" isPaused={{ pauseRef: paused, textForResuming: "Resume", iconForResuming: faEject }} callback={() => { setIsPaused(!paused); handleAudioControl(paused ? 'resume' : 'pause', paused, textToSpeak, speechSynthesisConfig); }} />
-          <FuncButton color="is-danger" isOutlined icon={faStop} text="Stop" callback={() => handleAudioControl('stop', paused, textToSpeak, speechSynthesisConfig)} />
+          <FuncButton color="is-success" isOutlined icon={faPlay} text={ t('play_button_text') } callback={() => handleAudioControl('play', paused, textToSpeak, speechSynthesisConfig)} />
+          <FuncButton color="is-warning" isOutlined icon={faPause} text={t('pause_button_text')} isPaused={{ pauseRef: paused, textForResuming: t('resume_button_text'), iconForResuming: faEject }} callback={() => { setIsPaused(!paused); handleAudioControl(paused ? 'resume' : 'pause', paused, textToSpeak, speechSynthesisConfig); }} />
+          <FuncButton color="is-danger" isOutlined icon={faStop} text={ t('stop_button_text') } callback={() => handleAudioControl('stop', paused, textToSpeak, speechSynthesisConfig)} />
         </div>
       </section>
     </div>
