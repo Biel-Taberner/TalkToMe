@@ -1,0 +1,20 @@
+{
+    "translation": {
+        "home": "Home",
+        "documentation": "Documentation",
+        "services": "Services",
+        "home_subtitle": "A simple fun and innovate application to interact with audio!",
+        "home_section_2_title": "What is TalkToMe?",
+        "home_section_2_subtitle": "TalkToMe is an innovative and fun application that allows users to convert text into audio and audio into text quickly and accessibly. Designed to enhance communication and accessibility, it also lets users experiment with different voice modulation settings, making the experience more dynamic and entertaining.",
+        "home_section_3_title": "Why use TalkToMe?",
+        "home_section_3_subtitle_1": "TalkToMe was born from the need to explore the field of speech synthesis and recognition, as well as the possibility of interacting with audio input peripherals, such as microphones. Its goal is to simplify text-to-audio conversion in a flexible and user-friendly way, enabling users to improve accessibility, optimize learning, and create content efficiently.",
+        "home_section_3_subtitle_2": "Whether you need to transcribe notes, listen to documents, experiment with different tones and speech speeds, or download customized audio files, TalkToMe adapts to a wide range of needs, providing a practical and versatile solution.",
+        "home_section_4_title": "What can I do with TalkToMe",
+        "home_section_4_subtitle": "Inside the app, users can:",
+        "home_section_4_list_1": "<strong>Convert text to speech</strong> with support for multiple languages.",
+        "home_section_4_list_2": "<strong>Adjust voice parameters,</strong> such as speed, pitch, and style, to personalize the audio experience.",
+        "home_section_4_list_3": "<strong>Download generated audio</strong> in <strong>.wav and .mp3 formats</strong> making it easy to use in other projects or devices.",
+        "home_section_5_title": "How does TalkToMe work?",
+        "home_section_5_subtitle": "TalkToMe uses the <strong>JavaScript SpeechSynthesis API</strong> for text-to-speech conversion, allowing users to generate natural and customizable audio. For speech-to-text conversion, it employs advanced voice recognition technologies, ensuring precise and real-time transcription."
+    }
+}

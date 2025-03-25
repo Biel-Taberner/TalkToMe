@@ -18,22 +18,8 @@ export default function Layout() {
     const { t, i18n: {changeLanguage, language} } = useTranslation();
     const [currentLanguage, setCurrentLanguage] = useState(language);
 
-    useEffect(() => {
-
-        const autoSetLanguage = () => {
-            if (localStorage.getItem("lang")) {
-                setCurrentLanguage(localStorage.getItem("lang"));
-                changeLanguage(localStorage.getItem("lang"));
-            }
-        }
-
-        autoSetLanguage();
-    }, [])
-
     const handleLanguageChange = (langCode: string) => {
         let currentUserLang = langCode;
-
-        localStorage.setItem("lang", currentUserLang);
 
         setCurrentLanguage(currentUserLang)
         changeLanguage(currentUserLang);
@@ -60,21 +46,16 @@ export default function Layout() {
 
             <div className="navbar-menu is-flex-grow-0" id="navbarBasicExample">
                 <div className="navbar-start navbar-items-gap columns is-1">
-                    <a className="navbar-item is-size-5">
-                        { t('home') }
-                    </a>
+                    <Link to={"/"} className="navbar-item is-size-5">{ t('home') }</Link>
 
-                    <a className="navbar-item is-size-5">
-                        { t('documentation') }
-                    </a>
+                    <Link to={"/documentation"} className="navbar-item is-size-5">{ t('documentation') }</Link>
 
                     <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link is-size-5">
-                        { t('services') }
+                            { t('services') }
                         </a>
 
                         <div className="navbar-dropdown">
-
                             {
                                 routesInfo.map((routeInfo: Object, i) => (
                                     <Link key={i} className="navbar-item has-text-black" to={routeInfo?.route}>{routeInfo?.name}</Link>

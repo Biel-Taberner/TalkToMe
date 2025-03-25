@@ -1,0 +1,20 @@
+{
+    "translation": {
+        "home": "Startseite",
+        "documentation": "Dokumentation",
+        "services": "Dienstleistungen",
+        "home_subtitle": "Eine einfache, unterhaltsame und innovative Anwendung zur Interaktion mit Audio!",
+        "home_section_2_title": "Was ist TalkToMe?",
+        "home_section_2_subtitle": "TalkToMe ist eine innovative und unterhaltsame Anwendung, die es Benutzern ermöglicht, Text schnell und zugänglich in Audio und Audio in Text umzuwandeln. Entwickelt, um die Kommunikation und Zugänglichkeit zu verbessern, ermöglicht es den Benutzern auch, mit verschiedenen Stimmmodulations-Einstellungen zu experimentieren, was die Erfahrung dynamischer und unterhaltsamer macht.",
+        "home_section_3_title": "Warum TalkToMe verwenden?",
+        "home_section_3_subtitle_1": "TalkToMe entstand aus dem Bedürfnis, das Gebiet der Sprachsynthese und -erkennung zu erkunden sowie die Möglichkeit, mit Audioeingabegeräten wie Mikrofonen zu interagieren. Ziel ist es, die Umwandlung von Text in Audio auf flexible und benutzerfreundliche Weise zu vereinfachen, damit die Benutzer die Zugänglichkeit verbessern, das Lernen optimieren und Inhalte effizient erstellen können.",
+        "home_section_3_subtitle_2": "Egal, ob Sie Notizen transkribieren, Dokumente anhören, mit verschiedenen Tönen und Sprechgeschwindigkeiten experimentieren oder benutzerdefinierte Audiodateien herunterladen müssen, TalkToMe passt sich einer Vielzahl von Bedürfnissen an und bietet eine praktische und vielseitige Lösung.",
+        "home_section_4_title": "Was kann ich mit TalkToMe machen?",
+        "home_section_4_subtitle": "Innerhalb der App können Benutzer:",
+        "home_section_4_list_1": "<strong>Text in Sprache umwandeln</strong> mit Unterstützung für mehrere Sprachen.",
+        "home_section_4_list_2": "<strong>Stimmenparameter anpassen,</strong> wie Geschwindigkeit, Tonhöhe und Stil, um das Audioerlebnis zu personalisieren.",
+        "home_section_4_list_3": "<strong>Generierte Audiodateien herunterladen</strong> im <strong>.wav- und .mp3-Format</strong>, was die Verwendung in anderen Projekten oder Geräten erleichtert.",
+        "home_section_5_title": "Wie funktioniert TalkToMe?",
+        "home_section_5_subtitle": "TalkToMe verwendet die <strong>JavaScript SpeechSynthesis API</strong> zur Umwandlung von Text in Sprache, sodass Benutzer natürliches und anpassbares Audio generieren können. Für die Umwandlung von Sprache in Text werden fortschrittliche Spracherkennungstechnologien eingesetzt, die eine präzise und Echtzeit-Transkription gewährleisten."
+    }
+}
