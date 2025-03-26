@@ -51,6 +51,18 @@ const useVoices = (langCode: string) => {
     setVoices(filteredVoices);
   }, [langCode]);
 
+  useEffect(() => {
+    const updateListName = () => {
+      const translatedLangs = new Intl.DisplayNames([language], { type: "language" });
+
+      languages.map((lang) => {
+        lang.name = translatedLangs.of(lang.langCode);
+      })
+    };
+
+    updateListName();
+  })
+
   return { voices, languages };
 };
 
@@ -126,7 +138,7 @@ const Render = () => {
                       <Flag country={speechSynthesisConfig.flagCode} />
                     </span>
                   }
-                  <span>{speechSynthesisConfig.name || t('demo_section_1_dropdown_opt') }</span>
+                  <span className="is-capitalized">{speechSynthesisConfig.name || t('demo_section_1_dropdown_opt') }</span>
                 </div>
                 <span className="icon is-small">
                   <FontAwesomeIcon icon={faCaretDown} />
@@ -139,7 +151,7 @@ const Render = () => {
                 {languages.map((voice, i) => (
                   <div key={i} className="dropdown-country-item icon-text-gap p-3 is-flex is-justify-content-start" onClick={() => handleConfiguration(voice.name, voice.langCode.split("-")[1], voice.langCode)}>
                     <Flag country={voice.langCode.split("-")[1]} />
-                    <div className="has-text-black">{voice.name}</div>
+                    <div className="has-text-black is-capitalized">{voice.name}</div>
                   </div>
                 ))}
               </div>

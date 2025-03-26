@@ -1,4 +1,7 @@
+import { faLanguage } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react"
+import Flag from "react-flagkit";
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom";
 
@@ -13,16 +16,58 @@ const routesInfo = [
     }
 ]
 
+const languages = [
+    {
+        name: "English",
+        flagCode: "US",
+        langCode: "en"
+    },
+    {
+        name: "Spanish",
+        flagCode: "ES",
+        langCode: "es"
+    },
+    {
+        name: "German",
+        flagCode: "DE",
+        langCode: "de"
+    }
+]
+
 export default function Layout() {
 
     const { t, i18n: {changeLanguage, language} } = useTranslation();
-    const [currentLanguage, setCurrentLanguage] = useState(language);
+    const [currentLanguage, setCurrentLanguage] = useState({ name: "", flagCode: "", langCode: language });
 
-    const handleLanguageChange = (langCode: string) => {
+    useEffect(() => {
+        const autoDetectLanguage = () => {
+
+            let storedLanguage = localStorage.getItem("i18nextLng") ? localStorage.getItem("i18nextLng") : "us";
+            if (storedLanguage === "en") {
+                storedLanguage = "us";
+            }
+            setCurrentLanguage({ name: "", flagCode: storedLanguage?.toUpperCase(), langCode: "" })
+
+            updateTextTranslation(currentLanguage);
+        }
+        autoDetectLanguage();
+    }, [])
+
+    const handleLanguageChange = (langCode: any) => {
         let currentUserLang = langCode;
 
-        setCurrentLanguage(currentUserLang)
-        changeLanguage(currentUserLang);
+        setCurrentLanguage({ ...currentUserLang })
+        changeLanguage(currentUserLang?.langCode);
+
+        updateTextTranslation(currentUserLang);
+    }
+
+    const updateTextTranslation = (langObject) => {
+        const translatedLangs = new Intl.DisplayNames([langObject.langCode], { type: "language" });
+
+        languages.map((lang) => {
+            lang.name = translatedLangs.of(lang.langCode);
+        })
     }
 
     return (
@@ -67,12 +112,22 @@ export default function Layout() {
             </div>
 
             <div className="navbar-menu is-flex-grow-0 is-align-items-center" id="navbarBasicExample">
-                <div className="select is-secondary">
-                    <select value={currentLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
-                        <option value={"en"}>EN</option>
-                        <option value={"es"}>ES</option>
-                        <option value={"de"}>DE</option>
-                    </select>
+                <div className="navbar-item has-dropdown is-hoverable">
+                    <a className="navbar-link is-size-5">
+                        <FontAwesomeIcon icon={faLanguage} size="lg" />
+                        <Flag country={currentLanguage.flagCode} />
+                    </a>
+
+                    <div className="navbar-dropdown is-right">
+                        {
+                            languages.map((lang, i) => (
+                                <a key={i} className="navbar-item has-text-black is-capitalized" onClick={() => handleLanguageChange(lang)}>
+                                    <Flag country={lang.flagCode} />
+                                    { lang.name }
+                                </a>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
             
