@@ -8,6 +8,8 @@ import FuncButton from "../components/button/FuncButton";
 import BlockInfo from "../components/block/BlockInfo";
 import { Trans, useTranslation } from "react-i18next";
 import { t } from "i18next";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const speechConfigDefaults = {
   name: "",
@@ -120,18 +122,74 @@ const Render = () => {
     }));
   }, []);
 
+
+  useGSAP(() => {
+    const sections = [".section-1", ".section-2", ".section-3", ".section-4"];
+    const button = ".action-button";
+    const scrollTriggerConfig = {
+      trigger: ".section-4",
+      start: "top 100%",
+    };
+  
+    gsap.set([...sections, button], { y: 20, alpha: 0 });
+  
+    gsap.to(sections.slice(0, 3), {
+      alpha: 1,
+      stagger: 0.25,
+      duration: 1,
+      y: 0,
+    });
+  
+    [".section-4", button].forEach(selector => {
+      gsap.to(selector, {
+        alpha: 1,
+        duration: 1,
+        y: 0,
+        stagger: 0.25,
+        scrollTrigger: scrollTriggerConfig,
+      });
+    });
+  }, []);
+
+  document.querySelectorAll(".action-button").forEach((iconButton) => {
+  
+    iconButton.addEventListener("mouseover", (e) => {
+      const iconInButton = e.currentTarget.querySelector(".iconInButton");
+  
+      if (iconInButton) {
+        gsap.to(iconInButton, {
+          rotationZ: 360,
+          ease: "linear",
+        });
+      }
+    });
+  
+    iconButton.addEventListener("mouseout", (e) => {
+      const iconInButton = e.currentTarget.querySelector(".iconInButton");
+  
+      if (iconInButton) {
+        gsap.to(iconInButton, {
+          rotationZ: 0,
+        });
+      }
+    });
+  
+  });
+  
+
+
   return (
     <div className="content mt-6">
       <section className="section">
-        <h1 className="title is-1 mt-6">{ t('demo_section_1_title') }</h1>
-        <p className="subtitle mt-3">
+        <h1 className="section-1 title is-1 mt-6">{ t('demo_section_1_title') }</h1>
+        <p className="section-1 subtitle mt-3">
           { t('demo_section_1_subtitle') }
         </p>
 
         <div className="is-widescreen">
           <div className={`dropdown maxWidth ${dropdown ? 'is-active' : ''}`} onClick={() => setDropdown(!dropdown)}>
             <div className="dropdown-trigger maxWidth">
-              <button className="button maxWidth is-justify-content-space-between" aria-haspopup="true" aria-controls="dropdown-menu">
+              <button className="section-1 button maxWidth is-justify-content-space-between" aria-haspopup="true" aria-controls="dropdown-menu">
                 <div className="is-flex icon-text-gap">
                   {speechSynthesisConfig.flagCode && 
                     <span className="icon is-small">
@@ -144,7 +202,7 @@ const Render = () => {
                   <FontAwesomeIcon icon={faCaretDown} />
                 </span>
               </button>
-              <p className="help">{ t('demo_section_1_dropdown_helper') }</p>
+              <p className="help section-1">{ t('demo_section_1_dropdown_helper') }</p>
             </div>
             <div className="dropdown-menu maxWidth" id="dropdown-menu" role="menu">
               <div className="dropdown-content p-3 dropdown-content-height">
@@ -159,7 +217,7 @@ const Render = () => {
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-6 section-2">
           <div className="columns">
             <div className="column">
               <BlockInfo title={t('rate')} voiceProp={t('rate').toLowerCase()} determinant={t("f_determinant")} />
@@ -175,16 +233,18 @@ const Render = () => {
         </div>
 
         <div className="mt-6">
-          <BlockInfo title={t('voice')} voiceProp={t('voice').toLowerCase()} determinant={t("f_determinant")} />
-          <div className="is-widescreen">
+          <div className="section-3">
+            <BlockInfo title={t('voice')} voiceProp={t('voice').toLowerCase()} determinant={t("f_determinant")} />  
+          </div>
+          <div className="is-widescreen mt-3">
             <div className={`dropdown maxWidth ${dropdownVoices ? 'is-active' : ''}`} onClick={() => setDropdownVoices(!dropdownVoices)}>
               <div className="dropdown-trigger maxWidth">
-                <button className="button maxWidth is-justify-content-space-between" aria-haspopup="true" aria-controls="dropdown-menu">
+                <button className="section-3 button maxWidth is-justify-content-space-between" aria-haspopup="true" aria-controls="dropdown-menu">
                   <div className="is-flex icon-text-gap">
                     <span>{speechSynthesisConfig.voice?.voiceURI || t('demo_section_2_voice_dropdown_text')}</span>
                   </div>
                 </button>
-                <p className="help">{ t('demo_section_2_voice_dropdown_helper') }</p>
+                <p className="help section-3">{ t('demo_section_2_voice_dropdown_helper') }</p>
               </div>
               <div className="dropdown-menu maxWidth" id="dropdown-menu" role="menu">
                 <div className="dropdown-content p-3 dropdown-content-height">
@@ -203,7 +263,7 @@ const Render = () => {
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-6 section-4">
           <div className="title">
             { t('content') }
           </div>

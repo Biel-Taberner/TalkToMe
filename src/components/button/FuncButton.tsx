@@ -21,9 +21,9 @@ interface PauseProps {
 
 export default function FuncButton({ color, icon, text, isOutlined, callback, speechConfig, textToSpeak, isPaused } : ButtonProps) {
     return (
-        <button className={`button ${isOutlined ? 'is-outlined' : ''} ${color}`} onClick={(e) => callback(textToSpeak, speechConfig)}>
+        <button className={`action-button button ${isOutlined ? 'is-outlined' : ''} ${color}`} onClick={(e) => callback(textToSpeak, speechConfig)}>
             <div className="is-flex is-align-items-center button-icon-text-gap">
-                <FontAwesomeIcon className={isPaused?.pauseRef ? 'fa-rotate-90' : ''} icon={ isPaused?.pauseRef ? isPaused.iconForResuming : icon } />
+                <FontAwesomeIcon className={isPaused?.pauseRef ? 'iconInButton' : 'iconInButton'} icon={ isPaused?.pauseRef ? isPaused.iconForResuming : icon } />
                 <div>
                     {
                         isPaused?.pauseRef ? isPaused?.textForResuming : text
