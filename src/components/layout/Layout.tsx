@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProgressBar from "../progressBar/ProgressBar";
+import Letterize from "letterizejs";
 
 const routesInfo = [
     {
@@ -43,6 +44,7 @@ export default function Layout() {
 
     const { t, i18n: {changeLanguage, language} } = useTranslation();
     const [currentLanguage, setCurrentLanguage] = useState({ name: "", flagCode: "", langCode: language });
+    const [letterize, setLetterize] = useState<Letterize>();
 
     useEffect(() => {
         const autoDetectLanguage = () => {
@@ -57,6 +59,11 @@ export default function Layout() {
         }
         autoDetectLanguage();
     }, [])
+
+    useEffect(() => {
+        const letterizeInst = new Letterize({ targets: ".letterize-navbar-item" });
+        setLetterize(letterizeInst);
+    }, []);
 
     const handleLanguageChange = (langCode: any) => {
         let currentUserLang = langCode;
@@ -74,6 +81,38 @@ export default function Layout() {
             lang.name = translatedLangs.of(lang.langCode);
         })
     }
+
+    useGSAP(() => {
+
+        if (letterize) {
+
+            document.querySelectorAll(".letterize-navbar-item").forEach((navbarItem, index) => {
+
+                navbarItem.addEventListener("mouseover", (e) => {
+
+                    gsap.to(letterize.list[index], {
+                        color: "black",
+                        fontSize: 21,
+                        stagger: 0.05
+                    })
+
+                })
+
+                navbarItem.addEventListener("mouseout", (e) => {
+
+                    gsap.to(letterize.list[index], {
+                        color: "revert",
+                        fontSize: 20,
+                        stagger: 0.05
+                    })
+
+                })
+
+            })
+
+        }
+
+    }, [letterize])
 
     return (
         <nav className="is-fixed-top navbar is-justify-content-space-between p-4 has-background-info" role="navigation" aria-label="main navigation">
@@ -97,15 +136,19 @@ export default function Layout() {
                 <div className="navbar-start navbar-items-gap columns is-1 is-align-items-center">
 
                     <div className="link-navbar-container">
-                        <Link to={"/"} className="navbar-item is-size-5 is-justify-content-center">
-                            { t('home') }
+                        <Link to={"/"} className="navbar-item is-size-5">
+                            <div className="letterize-navbar-item">
+                                { t('home') }
+                            </div>
                         </Link>
                         <ProgressBar />
                     </div>
 
                     <div className="link-navbar-container">
                         <Link to={"/documentation"} className="navbar-item is-size-5 is-justify-content-center">
-                            { t('documentation') }
+                            <div className="letterize-navbar-item">
+                                { t('documentation') }
+                            </div>
                         </Link>
                         <ProgressBar />
                     </div>
@@ -113,7 +156,9 @@ export default function Layout() {
                     <div className="link-navbar-container">
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-link is-size-5">
-                                { t('services') }
+                                <div className="letterize-navbar-item">
+                                    { t('services') }
+                                </div>
                             </a>
 
                             <div className="navbar-dropdown">
