@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
-import { autoDetectLanguage } from "../utils/autoDetectLanguage";
-import { updateTranslatedContent } from "../utils/updateTranslatedContent";
+import { autoDetectLanguage } from "../../utils/language/autoDetectLanguage";
+import { updateTranslatedContent } from "../../utils/language/updateTranslatedContent";
 import { useLanguage } from "./useLanguages";
 
 export function useLanguageDetection<Language>(setCurrentLanguage: (lang: Language) => void) {
@@ -8,17 +8,12 @@ export function useLanguageDetection<Language>(setCurrentLanguage: (lang: Langua
     const { languages } = useLanguage<Language>();
 
     const languageDetection = useCallback(() => {
-        
         const detectedLanguage = autoDetectLanguage(languages);
 
         if (detectedLanguage) {
-
             setCurrentLanguage(detectedLanguage);
-
             updateTranslatedContent(detectedLanguage, languages);
-
         }
-
     })
 
     useEffect(() => {

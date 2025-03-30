@@ -1,79 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SVGIcon from "../icon/SVGIcon";
 import { ScrollTrigger } from "gsap/all";
-import Letterize from "letterizejs";
+import { useLetterize } from "../../hooks/letterize/useLetterize";
+import { useGSAPFooterAnimations } from "../../hooks/gsap-animations/useGSAPFooterAnimations";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Footer() {
 
-    const footerRef = useRef(null);
-    const ccRef = useRef(null);
-    const [letterize, setLetterize] = useState<Letterize>();
+    const { footerRef, ccRef, letterize } = useLetterize();
 
-    useEffect(() => {
-        if (ccRef.current) {
-            const text = ccRef.current.textContent || "";
-            const formattedText = text.split("").map(char => 
-                char === " " ? "\u00A0" : char
-            ).join("");
-    
-            ccRef.current.innerHTML = formattedText;
-            setLetterize(new Letterize({ targets: ccRef.current }));
-        }
-    }, []);
-
-    useGSAP(() => {
-
-        if (letterize) {
-
-            gsap.set([footerRef.current, ccRef.current], {
-                y: 20,
-                alpha: 0
-            })
-    
-            gsap.to(footerRef.current, {
-                y: 0,
-                alpha: 1,
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: "top 100%",
-                }
-            })
-    
-            gsap.to(ccRef.current, {
-                y: 0,
-                alpha: 1,
-                scrollTrigger: {
-                    trigger: ccRef.current,
-                    start: "top 100%",
-                }
-            })
-
-            ccRef.current.addEventListener("mouseover", () => {
-
-                letterize.list.forEach(letterizeEntry => {
-                    gsap.to(letterizeEntry, {
-                        stagger: 0.03,
-                        alpha: 0.5,
-                        fontSize: 17
-                    })
-                })
-            })
-
-            ccRef.current.addEventListener("mouseout", () => {
-                gsap.to(letterize.list[0], {
-                    stagger: 0.03,
-                    alpha: 1,
-                    fontSize: 16
-                })
-            })
-
-        }
-
-    }, [letterize])
+    useGSAPFooterAnimations(footerRef.current, ccRef.current, letterize);
 
     return (
         <div>

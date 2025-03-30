@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom";
 import ProgressBar from "../progressBar/ProgressBar";
 import Language from "../../models/Language";
-import { useLanguageDetection } from "../../hooks/useLanguageDetection";
-import { handleLanguageChange } from "../../utils/handleLanguageChange";
+import { useLanguageDetection } from "../../hooks/language/useLanguageDetection";
+import { handleLanguageChange } from "../../utils/language/handleLanguageChange";
 import { NAVBAR_ROUTES } from "../../constants/ui/navbarRoutes";
 
 export default function Layout() {

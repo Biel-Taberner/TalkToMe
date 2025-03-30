@@ -1,6 +1,6 @@
 import { changeLanguage } from "i18next";
-import Language from "../models/Language";
-import { updateTranslatedContent } from "./updateTranslatedContent";
+import Language from "../../models/Language.ts";
+import { updateTranslatedContent } from "./updateTranslatedContent.ts";
 
 export function handleLanguageChange(langCode: Language, languages: Language[], setCurrentLanguage: (lang : Language) => void) {
     let currentUserLang = langCode;
