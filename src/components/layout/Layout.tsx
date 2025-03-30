@@ -1,118 +1,20 @@
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useRef, useState } from "react"
+import React, { useState } from "react"
 import Flag from "react-flagkit";
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import ProgressBar from "../progressBar/ProgressBar";
-import Letterize from "letterizejs";
-
-const routesInfo = [
-    {
-        name: "TalkToMe",
-        route: "/demo",
-    },
-    {
-        name: "ListenToMe",
-        route: "https://www.youtube.es/"
-    }
-]
-
-const languages = [
-    {
-        name: "English",
-        flagCode: "US",
-        langCode: "en"
-    },
-    {
-        name: "Spanish",
-        flagCode: "ES",
-        langCode: "es"
-    },
-    {
-        name: "German",
-        flagCode: "DE",
-        langCode: "de"
-    }
-]
-
-gsap.registerPlugin(useGSAP);
+import Language from "../../models/Language";
+import { useLanguageDetection } from "../../hooks/useLanguageDetection";
+import { handleLanguageChange } from "../../utils/handleLanguageChange";
+import { navbarRoutes } from "../../constants/navbarRoutes";
 
 export default function Layout() {
 
-    const { t, i18n: {changeLanguage, language} } = useTranslation();
-    const [currentLanguage, setCurrentLanguage] = useState({ name: "", flagCode: "", langCode: language });
-    const [letterize, setLetterize] = useState<Letterize>();
-
-    useEffect(() => {
-        const autoDetectLanguage = () => {
-
-            let storedLanguage = localStorage.getItem("i18nextLng") ? localStorage.getItem("i18nextLng") : "us";
-            if (storedLanguage === "en") {
-                storedLanguage = "us";
-            }
-            setCurrentLanguage({ name: "", flagCode: storedLanguage?.toUpperCase(), langCode: "" })
-
-            updateTextTranslation(currentLanguage);
-        }
-        autoDetectLanguage();
-    }, [])
-
-    useEffect(() => {
-        const letterizeInst = new Letterize({ targets: ".letterize-navbar-item" });
-        setLetterize(letterizeInst);
-    }, []);
-
-    const handleLanguageChange = (langCode: any) => {
-        let currentUserLang = langCode;
-
-        setCurrentLanguage({ ...currentUserLang })
-        changeLanguage(currentUserLang?.langCode);
-
-        updateTextTranslation(currentUserLang);
-    }
-
-    const updateTextTranslation = (langObject) => {
-        const translatedLangs = new Intl.DisplayNames([langObject.langCode], { type: "language" });
-
-        languages.map((lang) => {
-            lang.name = translatedLangs.of(lang.langCode);
-        })
-    }
-
-    useGSAP(() => {
-
-        if (letterize) {
-
-            document.querySelectorAll(".letterize-navbar-item").forEach((navbarItem, index) => {
-
-                navbarItem.addEventListener("mouseover", (e) => {
-
-                    gsap.to(letterize.list[index], {
-                        color: "black",
-                        fontSize: 21,
-                        stagger: 0.05
-                    })
-
-                })
-
-                navbarItem.addEventListener("mouseout", (e) => {
-
-                    gsap.to(letterize.list[index], {
-                        color: "revert",
-                        fontSize: 20,
-                        stagger: 0.05
-                    })
-
-                })
-
-            })
-
-        }
-
-    }, [letterize])
+    const { t } = useTranslation();
+    const [currentLanguage, setCurrentLanguage] = useState<Language>();
+    const { languages } = useLanguageDetection<Language>(setCurrentLanguage);
 
     return (
         <nav className="is-fixed-top navbar is-justify-content-space-between p-4 has-background-info" role="navigation" aria-label="main navigation">
@@ -163,8 +65,8 @@ export default function Layout() {
 
                             <div className="navbar-dropdown">
                                 {
-                                    routesInfo.map((routeInfo: Object, i) => (
-                                        <Link key={i} className="navbar-item has-text-black" to={routeInfo?.route}>{routeInfo?.name}</Link>
+                                    navbarRoutes.map((route: Object, i) => (
+                                        <Link key={i} className="navbar-item has-text-black" to={route?.route}>{route?.name}</Link>
                                     ))
                                 }
                             </div>
@@ -179,15 +81,15 @@ export default function Layout() {
                     <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link is-size-5">
                             <FontAwesomeIcon icon={faLanguage} size="lg" />
-                            <Flag country={currentLanguage.flagCode} />
+                            <Flag country={currentLanguage?.getFlagCode()} />
                         </a>
 
                         <div className="navbar-dropdown is-right">
                             {
                                 languages.map((lang, i) => (
-                                    <a key={i} className="navbar-item has-text-black is-capitalized" onClick={() => handleLanguageChange(lang)}>
-                                        <Flag country={lang.flagCode} />
-                                        { lang.name }
+                                    <a key={i} className="navbar-item has-text-black is-capitalized" onClick={() => handleLanguageChange(lang, languages, setCurrentLanguage)}>
+                                        <Flag country={lang.getFlagCode()} />
+                                        { lang.getName() }
                                     </a>
                                 ))
                             }
