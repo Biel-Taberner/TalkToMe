@@ -1,0 +1,3 @@
+import { ENV_FILE_STATEMENT } from "../global";
+
+export const GET_ALL_LANGUAGES_ROUTE = ENV_FILE_STATEMENT.VITE_JSON_FILE;

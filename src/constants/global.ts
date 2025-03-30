@@ -1,0 +1,1 @@
+export const ENV_FILE_STATEMENT = import.meta.env

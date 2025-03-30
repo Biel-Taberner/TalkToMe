@@ -1,4 +1,4 @@
-export const navbarRoutes = [
+export const NAVBAR_ROUTES = [
     {
         name: "TalkToMe",
         route: "/demo",

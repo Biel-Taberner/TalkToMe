@@ -8,7 +8,7 @@ import ProgressBar from "../progressBar/ProgressBar";
 import Language from "../../models/Language";
 import { useLanguageDetection } from "../../hooks/useLanguageDetection";
 import { handleLanguageChange } from "../../utils/handleLanguageChange";
-import { navbarRoutes } from "../../constants/navbarRoutes";
+import { NAVBAR_ROUTES } from "../../constants/ui/navbarRoutes";
 
 export default function Layout() {
 
@@ -65,7 +65,7 @@ export default function Layout() {
 
                             <div className="navbar-dropdown">
                                 {
-                                    navbarRoutes.map((route: Object, i) => (
+                                    NAVBAR_ROUTES.map((route: Object, i) => (
                                         <Link key={i} className="navbar-item has-text-black" to={route?.route}>{route?.name}</Link>
                                     ))
                                 }
