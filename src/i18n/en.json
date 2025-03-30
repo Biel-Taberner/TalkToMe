@@ -27,6 +27,7 @@
         "demo_section_2_voice_dropdown_no_opts": "No voices available for the selected language.",
         "demo_section_2_voice_dropdown_helper": "The voice used will be the default available for the utterance's language if not set.",
         "demo_section_3_textarea_placeholder": "e.g. Hello World",
+        "footer_subtitle": "Learn, explore, edit and transcript audios.",
         "rate": "Rate",
         "pitch": "Pitch",
         "volume": "Volume",
@@ -37,6 +38,7 @@
         "stop_button_text": "Stop",
         "content": "Content",
         "f_determinant": "the",
-        "m_determinant": "the"
+        "m_determinant": "the",
+        "by": "by"
     }
 }

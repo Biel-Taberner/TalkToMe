@@ -27,6 +27,7 @@
         "demo_section_2_voice_dropdown_no_opts": "Keine Stimmen für die ausgewählte Sprache verfügbar.",
         "demo_section_2_voice_dropdown_helper": "Die verwendete Stimme wird die Standardstimme für die Sprache der Äußerung sein, wenn nicht festgelegt.",
         "demo_section_3_textarea_placeholder": "z.B. Hallo Welt",
+        "footer_subtitle": "Lernen, erkunden, bearbeiten und transkribieren Sie Audios.",
         "rate": "Tonhöhe",
         "pitch": "Tonhöhe",
         "volume": "Lautstärke",
@@ -37,6 +38,7 @@
         "stop_button_text": "Stopp",
         "content": "Inhalt",
         "f_determinant": "die",
-        "m_determinant": "der"
+        "m_determinant": "der",
+        "by": "von"
     }
 }

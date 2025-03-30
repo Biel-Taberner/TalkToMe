@@ -27,6 +27,7 @@
         "demo_section_2_voice_dropdown_no_opts": "No hay voces disponibles para el idioma seleccionado.",
         "demo_section_2_voice_dropdown_helper": "Si no se ha establecido, se usará la voz por defecto del idioma seleccionado.",
         "demo_section_3_textarea_placeholder": "ej: Hola Mundo",
+        "footer_subtitle": "Aprende, explora, edita y transcribe audios.",
         "volume": "Volumen",
         "rate": "Velocidad",
         "pitch": "Tono",
@@ -37,6 +38,7 @@
         "stop_button_text": "Parar",
         "content": "Contenido",
         "f_determinant": "la",
-        "m_determinant": "el"
+        "m_determinant": "el",
+        "by": "por"
     }
 }

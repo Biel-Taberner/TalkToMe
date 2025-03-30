@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SVGIcon from "../icon/SVGIcon";
 import { ScrollTrigger } from "gsap/all";
 import { useLetterize } from "../../hooks/letterize/useLetterize";
 import { useGSAPFooterAnimations } from "../../hooks/gsap-animations/useGSAPFooterAnimations";
+import { t } from "i18next";
+import { useLanguageDetection } from "../../hooks/language/useLanguageDetection";
+import Language from "../../models/Language";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Footer() {
+
+    const { i18n: {language} } = useTranslation();
+    const [currentLanguage, setCurrentLanguage] = useState<Language>(language);
+    const { languages } = useLanguageDetection<Language>(setCurrentLanguage);
 
     const { footerRef, ccRef, letterize } = useLetterize();
 
@@ -20,7 +28,7 @@ export default function Footer() {
                 <div className="is-flex is-justify-content-center">
                     <div ref={footerRef} className="is-flex is-flex-direction-column">
                         <div className="title mb-5 has-text-white-bis">TalkToMe</div>
-                        <div className="subtitle is-4 mb-5 has-text-white-bis">Learn, explore, edit and transcript audios.</div>
+                        <div className="subtitle is-4 mb-5 has-text-white-bis">{ t('footer_subtitle') }</div>
                         <div className="mb-5 is-flex is-justify-content-flex-start icon-text-gap">
                             <div>
                                 <a target="_blank" href="https://www.linkedin.com/in/gabriel-taberner-69aa68311">
@@ -49,7 +57,7 @@ export default function Footer() {
             </div>
             <div className="has-background-dark p-4 is-flex is-justify-content-center has-text-white-bis">
                 <div ref={ccRef} className="mr-1">
-                    &copy; 2025 by Gabriel Taberner Machado
+                    &copy; 2025 { t('by') } Gabriel Taberner Machado
                 </div>
             </div>
         </div>
