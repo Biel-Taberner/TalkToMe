@@ -23,7 +23,7 @@ export default function FuncButton({ color, icon, text, isOutlined, callback, sp
     return (
         <button className={`action-button button ${isOutlined ? 'is-outlined' : ''} ${color}`} onClick={(e) => callback(textToSpeak, speechConfig)}>
             <div className="is-flex is-align-items-center button-icon-text-gap">
-                <FontAwesomeIcon className={isPaused?.pauseRef ? 'iconInButton' : 'iconInButton'} icon={ isPaused?.pauseRef ? isPaused.iconForResuming : icon } />
+                <FontAwesomeIcon className={isPaused?.pauseRef ? 'iconInButton fa-rotate-90' : 'iconInButton'} icon={ isPaused?.pauseRef ? isPaused.iconForResuming : icon } />
                 <div>
                     {
                         isPaused?.pauseRef ? isPaused?.textForResuming : text

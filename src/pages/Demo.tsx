@@ -1,182 +1,26 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState } from "react";
 import Container from "../components/container/Container";
 import Flag from "react-flagkit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faStop, faPause, faEject, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import SpeechInput from "../components/input/SpeechInput";
-import FuncButton from "../components/button/FuncButton";
+import FuncButton from "../components/button/FuncButton.tsx";
 import BlockInfo from "../components/block/BlockInfo";
-import { Trans, useTranslation } from "react-i18next";
 import { t } from "i18next";
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-
-const speechConfigDefaults = {
-  name: "",
-  flagCode: "",
-  langCode: "",
-  voice: null,
-  pitch: 1,
-  rate: 1,
-  volume: 1
-};
-
-const useVoices = (langCode: string) => {
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [languages, setLanguages] = useState<{ langCode: string; name: string }[]>([]);
-  const { i18n: {changeLanguage, language} } = useTranslation();
-
-  useEffect(() => {
-    const filterLanguages = () => {
-      const voices = speechSynthesis.getVoices();
-      const uniqueLanguages = [...new Set(voices.map(voice => voice.lang))];
-      const intlDisplay = new Intl.DisplayNames([language], { type: "language" });
-      const languageList = uniqueLanguages.map(langCode => ({
-        langCode,
-        name: intlDisplay.of(langCode) || langCode,
-      }));
-      setLanguages(languageList);
-    };
-    
-    filterLanguages();
-    speechSynthesis.addEventListener("voiceschanged", filterLanguages);
-
-    return () => {
-      speechSynthesis.removeEventListener("voiceschanged", filterLanguages);
-    };
-  }, []);
-
-  useEffect(() => {
-    const filteredVoices = langCode ? 
-      speechSynthesis.getVoices().filter(voice => voice.lang.startsWith(langCode)) : 
-      speechSynthesis.getVoices().filter(voice => voice.lang.startsWith("es"));
-    setVoices(filteredVoices);
-  }, [langCode]);
-
-  useEffect(() => {
-    const updateListName = () => {
-      const translatedLangs = new Intl.DisplayNames([language], { type: "language" });
-
-      languages.map((lang) => {
-        lang.name = translatedLangs.of(lang.langCode);
-      })
-    };
-
-    updateListName();
-  })
-
-  return { voices, languages };
-};
-
-const handleAudioControl = (action: 'play' | 'stop' | 'pause' | 'resume', paused: boolean, text: string, speechConfig: any) => {
-  const s = new SpeechSynthesisUtterance(text);
-  s.lang = speechConfig?.langCode;
-  s.voice = speechConfig?.voice;
-  s.pitch = speechConfig?.pitch;
-  s.rate = speechConfig?.rate;
-  s.volume = speechConfig?.volume;
-
-  switch (action) {
-    case 'play':
-      speechSynthesis.speak(s);
-      break;
-    case 'stop':
-      if (speechSynthesis.speaking) {
-        speechSynthesis.cancel();
-      }
-      break;
-    case 'pause':
-      if (speechSynthesis.speaking && !paused) {
-        speechSynthesis.pause();
-      }
-      break;
-    case 'resume':
-      if (paused) {
-        speechSynthesis.resume();
-      }
-      break;
-  }
-};
+import { useGSAPDemoPageAnimations } from "../hooks/gsap-animations/useGSAPAnimations";
+import { handleAudioControl, handleChange, handleConfiguration } from "../components/button/FuncButton.ts";
+import { useVoices } from "../hooks/voice/useVoice.ts";
+import { SPEECH_CONFIG_DEFAULT } from "../constants/speech_synthesis/speech_synthesis.ts";
 
 const Render = () => {
   const [dropdown, setDropdown] = useState(false);
   const [dropdownVoices, setDropdownVoices] = useState(false);
   const [paused, setIsPaused] = useState(false);
   const [textToSpeak, setTextToSpeak] = useState("");
-  const [speechSynthesisConfig, setSpeechSynthesisConfig] = useState(speechConfigDefaults);
+  const [speechSynthesisConfig, setSpeechSynthesisConfig] = useState(SPEECH_CONFIG_DEFAULT);
   const { voices, languages } = useVoices(speechSynthesisConfig.langCode);
 
-  const handleConfiguration = useCallback((nameVal: string, flagCodeVal: string, langCodeVal: string) => {
-    setSpeechSynthesisConfig(prevState => ({
-      ...prevState,
-      name: nameVal,
-      flagCode: flagCodeVal,
-      langCode: langCodeVal
-    }));
-  }, []);
-
-  const handleChange = useCallback((key: string, val: any, isNumber: boolean) => {
-    setSpeechSynthesisConfig(prevState => ({
-      ...prevState,
-      [key]: isNumber ? Number(val) : val
-    }));
-  }, []);
-
-
-  useGSAP(() => {
-    const sections = [".section-1", ".section-2", ".section-3", ".section-4"];
-    const button = ".action-button";
-    const scrollTriggerConfig = {
-      trigger: ".section-4",
-      start: "top 100%",
-    };
-  
-    gsap.set([...sections, button], { y: 20, alpha: 0 });
-  
-    gsap.to(sections.slice(0, 3), {
-      alpha: 1,
-      stagger: 0.25,
-      duration: 1,
-      y: 0,
-    });
-  
-    [".section-4", button].forEach(selector => {
-      gsap.to(selector, {
-        alpha: 1,
-        duration: 1,
-        y: 0,
-        stagger: 0.25,
-        scrollTrigger: scrollTriggerConfig,
-      });
-    });
-  }, []);
-
-  document.querySelectorAll(".action-button").forEach((iconButton) => {
-  
-    iconButton.addEventListener("mouseover", (e) => {
-      const iconInButton = e.currentTarget.querySelector(".iconInButton");
-  
-      if (iconInButton) {
-        gsap.to(iconInButton, {
-          rotationZ: 360,
-          ease: "linear",
-        });
-      }
-    });
-  
-    iconButton.addEventListener("mouseout", (e) => {
-      const iconInButton = e.currentTarget.querySelector(".iconInButton");
-  
-      if (iconInButton) {
-        gsap.to(iconInButton, {
-          rotationZ: 0,
-        });
-      }
-    });
-  
-  });
-  
-
+  useGSAPDemoPageAnimations();
 
   return (
     <div className="content mt-6">
@@ -207,7 +51,7 @@ const Render = () => {
             <div className="dropdown-menu maxWidth" id="dropdown-menu" role="menu">
               <div className="dropdown-content p-3 dropdown-content-height">
                 {languages.map((voice, i) => (
-                  <div key={i} className="dropdown-country-item icon-text-gap p-3 is-flex is-justify-content-start" onClick={() => handleConfiguration(voice.name, voice.langCode.split("-")[1], voice.langCode)}>
+                  <div key={i} className="dropdown-country-item icon-text-gap p-3 is-flex is-justify-content-start" onClick={() => handleConfiguration(voice.name, voice.langCode.split("-")[1], voice.langCode, setSpeechSynthesisConfig)}>
                     <Flag country={voice.langCode.split("-")[1]} />
                     <div className="has-text-black is-capitalized">{voice.name}</div>
                   </div>
@@ -221,15 +65,15 @@ const Render = () => {
           <div className="columns">
             <div className="column">
               <BlockInfo title={t('rate')} voiceProp={t('rate').toLowerCase()} determinant={t("f_determinant")} />
-              <SpeechInput showCurrentValue fieldKey="rate" type="range" minValue={0.1} maxValue={1} value={speechSynthesisConfig.rate} speechConfigKeyCallback={handleChange} isNumericValue />
+              <SpeechInput showCurrentValue fieldKey="rate" type="range" minValue={0.1} maxValue={1} value={speechSynthesisConfig.rate} speechConfigKeyCallback={() => handleChange} isNumericValue />
             </div>
             <div className="column">
               <BlockInfo title={t('pitch')} voiceProp={t('pitch').toLowerCase()} determinant={t("m_determinant")} />
-              <SpeechInput showCurrentValue fieldKey="pitch" type="range" minValue={0} maxValue={2} value={speechSynthesisConfig.pitch} speechConfigKeyCallback={handleChange} isNumericValue />
+              <SpeechInput showCurrentValue fieldKey="pitch" type="range" minValue={0} maxValue={2} value={speechSynthesisConfig.pitch} speechConfigKeyCallback={() => handleChange} isNumericValue />
             </div>
           </div>
           <BlockInfo title={t('volume')} voiceProp={t('volume').toLowerCase()} determinant={t("m_determinant")} />
-          <SpeechInput showCurrentValue fieldKey="volume" type="range" minValue={0} maxValue={1} value={speechSynthesisConfig.volume} speechConfigKeyCallback={handleChange} isNumericValue />
+          <SpeechInput showCurrentValue fieldKey="volume" type="range" minValue={0} maxValue={1} value={speechSynthesisConfig.volume} speechConfigKeyCallback={() => handleChange} isNumericValue />
         </div>
 
         <div className="mt-6">

@@ -7,12 +7,10 @@ $blueBg: #69e0f0;
   $textarea-max-height: 300px,
 );
 
+@use "../components/button/FuncButton.scss";
+
 .icon-text-gap {
   column-gap: 12px;
-}
-
-.button-icon-text-gap {
-  column-gap: 5px;
 }
 
 .navbar-items-gap {
