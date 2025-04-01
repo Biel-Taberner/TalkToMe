@@ -173,3 +173,35 @@ export function useGSAPDemoPageAnimations() {
         });
     });
 }
+
+export function useGSAPButtonAnimations() {
+    useGSAP(() => {
+
+        const button = ".action-button";
+
+        gsap.set(button, { y: 20, alpha: 0 });
+    
+        gsap.to(button, {
+            alpha: 1,
+            duration: 1,
+            y: 0,
+            stagger: 0.25,
+        });
+    
+        document.querySelectorAll(button).forEach((iconButton) => {
+            iconButton.addEventListener("mouseover", (e) => {
+              gsap.to(iconButton, {
+                ease: "power1",
+                scale: 1.075,
+              });
+            });
+          
+            iconButton.addEventListener("mouseout", (e) => {
+              gsap.to(iconButton, {
+                scale: 1,
+              });
+            });
+        });
+
+    }, [])
+}
