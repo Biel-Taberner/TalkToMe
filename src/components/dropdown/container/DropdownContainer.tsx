@@ -10,15 +10,21 @@ interface DropdownContainerProps {
     displayIconInTriggerContent?: boolean;
     displayIconInTrigger?: boolean;
     propertyInArray: string;
+    toggleHelperText?: DropdownToggleHelperProps;
     callback?: (...args : any) => void;
     callbackDropdown: (...args : any) => void;
     setterDropdownCallback: (...args : any) => void;
 }
 
-export default function DropdownContainer({ dropdownTrigger, propertyInArray, selectedLanguage, displayIconInTrigger, displayIconInTriggerContent, i18nDropdownText, languagesToMap, callback, callbackDropdown, setterDropdownCallback } : DropdownContainerProps) {
+interface DropdownToggleHelperProps {
+    toggleRef?: boolean;
+    i18nHelperText?: string;
+}
+
+export default function DropdownContainer({ dropdownTrigger, toggleHelperText = { toggleRef: true, i18nHelperText: "demo_section_1_dropdown_helper" }, propertyInArray, selectedLanguage, displayIconInTrigger, displayIconInTriggerContent, i18nDropdownText, languagesToMap, callback, callbackDropdown, setterDropdownCallback } : DropdownContainerProps) {
     return (
         <div className={`dropdown maxWidth ${dropdownTrigger ? 'is-active' : ''}`} onClick={callback}>
-            <DropdownTrigger displayIcon={displayIconInTrigger} selectedLanguage={selectedLanguage} i18nDropdownText={i18nDropdownText} />
+            <DropdownTrigger toggleHelperRef={toggleHelperText?.toggleRef} toggleHelperText={toggleHelperText?.i18nHelperText} displayIcon={displayIconInTrigger} selectedLanguage={selectedLanguage} i18nDropdownText={i18nDropdownText} />
             <DropdownContent propertyInArray={propertyInArray} displayIcon={displayIconInTriggerContent} languagesToMap={languagesToMap} callback={callbackDropdown} setterCallback={setterDropdownCallback} />
         </div>
     )

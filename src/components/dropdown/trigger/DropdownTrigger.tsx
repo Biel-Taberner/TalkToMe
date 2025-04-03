@@ -6,17 +6,13 @@ import Flag from "react-flagkit";
 
 interface DropdownTriggerProps {
     selectedLanguage: { name : string, flagCode? : string };
-    toggleHelperText?: DropdownToggleHelperProps;
     i18nDropdownText: string;
     displayIcon?: boolean;
+    toggleHelperRef: boolean;
+    toggleHelperText: string;
 }
 
-interface DropdownToggleHelperProps {
-    toggleRef: boolean;
-    i18nHelperText: string;
-}
-
-export default function DropdownTrigger({ selectedLanguage, displayIcon = true, toggleHelperText = { toggleRef: true, i18nHelperText: 'demo_section_1_dropdown_helper' }, i18nDropdownText } : DropdownTriggerProps) {
+export default function DropdownTrigger({ selectedLanguage, displayIcon = true, toggleHelperRef, toggleHelperText, i18nDropdownText } : DropdownTriggerProps) {
     return (
         <div className="dropdown-trigger maxWidth">
             <button className="section-1 button maxWidth is-justify-content-space-between" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -33,8 +29,8 @@ export default function DropdownTrigger({ selectedLanguage, displayIcon = true, 
                 </span>
             </button>
             {
-                toggleHelperText.toggleRef &&
-                    <p className="help section-1">{ t(toggleHelperText?.i18nHelperText) }</p>
+                toggleHelperRef &&
+                    <p className="help section-1">{ t(toggleHelperText) }</p>
             }
         </div>
     )

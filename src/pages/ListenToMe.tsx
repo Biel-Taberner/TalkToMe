@@ -57,6 +57,7 @@ function Render() {
                         callbackDropdown={setVoiceToUse}
                         setterDropdownCallback={setSelectedVoice}
                         propertyInArray="name"
+                        toggleHelperText={{ toggleRef: true, i18nHelperText: "listenToMe_lang_helper_text" }}
                     />
 
                     <div className="mt-6 section-2">

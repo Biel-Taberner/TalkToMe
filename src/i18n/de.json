@@ -40,6 +40,7 @@
         "copied": "Kopiert!",
         "clear": "Löschen",
         "stop": "Stop",
+        "listenToMe_lang_helper_text": "Durch die Angabe der Sprache wird die Genauigkeit der Spracherkennung verbessert, da der Motor an die spezifischen sprachlichen Merkmale angepasst wird. Wenn keine Auswahl getroffen wird, wird die Standardsprache des Browsers verwendet.",
         "browser_not_support_speech_recognition": "Ihr Browser unterstützt die Spracherkennung nicht. Bitte wechseln Sie Ihren Browser.",
         "listenToMe_interimResult_description": "Die Eigenschaft der vorläufigen Transkription des Spracherkennungssystems steuert, ob das System vorläufige Ergebnisse anzeigen soll, während du sprichst.",
         "listenToMe_continuity_description": "Die Option für kontinuierliche Erkennung ermöglicht es, Sprachresultate kontinuierlich zu erfassen. Wenn sie nicht aktiviert ist, wird nur ein Ergebnis erfasst, jedes Mal wenn die Spracherkennung gestartet wird.",

@@ -40,6 +40,7 @@
         "copied": "Copied!",
         "clear": "Clear",
         "stop": "Stop",
+        "listenToMe_lang_helper_text": "By specifying the language, the accuracy of voice detection is improved by adapting the engine to the specific linguistic characteristics. If not selected, the default language of the browser will be used.",
         "browser_not_support_speech_recognition": "Your browser doesn't support speech recognition. Please, change your browser.",
         "listenToMe_interimResult_description": "The provisional transcription property from the speech recognition controls whether the system should display provisional results as you speak.",
         "listenToMe_continuity_description": "The continuous recognition option allows you to capture speech results continuously. If it is not enabled, it captures a result each time speech recognition is started.",
