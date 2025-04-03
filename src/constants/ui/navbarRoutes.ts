@@ -5,6 +5,6 @@ export const NAVBAR_ROUTES = [
     },
     {
         name: "ListenToMe",
-        route: "https://www.youtube.es/"
+        route: "/listen-to-me"
     }
 ]

@@ -88,7 +88,6 @@ function Render() {
                         <Textarea contentToShow={trancriptedContent} classes={["textarea", "section-4"]} isDisabled placeholderI18nText="listenToMe_transcription_placeholder" />
                     </div>
                 </div>
-
             </section>
         </div>
     )
