@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Container from "../components/container/Container";
 import { faCheck, faCircleExclamation, faCopy, faMicrophone, faMicrophoneSlash, faTrash } from "@fortawesome/free-solid-svg-icons";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import { useVoices } from "../hooks/voice/useVoice";
-import { SPEECH_CONFIG_DEFAULT } from "../constants/speech_synthesis/speech_synthesis";
 import FuncButton from "../components/button/FuncButton.tsx";
 import { useGSAPDemoPageAnimations } from "../hooks/gsap-animations/useGSAPAnimations.ts";
 import ErrorModal from "../components/error/ErrorModal.tsx";
@@ -16,6 +15,7 @@ import { LANG_CONFIG } from "../constants/languages/language.ts";
 import BlockInfoList from "../components/block/BlockInfoList.tsx";
 import retrieveCommandsToTrigger from "../constants/commands/commands.ts";
 import BlockInfo from "../components/block/BlockInfo.tsx";
+import useTranscriptedContent from "../hooks/voice/useTranscriptedContent.ts";
 
 function Render() {
 
@@ -25,8 +25,7 @@ function Render() {
     const [copyButtonTrigger, setCopyButtonTrigger] = useState(false);
     const [continuousToggler, setContinuousToggler] = useState(false);
     const [voiceCommandsToggler, setVoiceCommandsToggler] = useState(false);
-    const [speechSynthesisConfig, setSpeechSynthesisConfig] = useState(SPEECH_CONFIG_DEFAULT);
-    const { languages } = useVoices(speechSynthesisConfig.langCode);
+    const { languages } = useVoices(LANG_CONFIG.langCode);
     const [selectedVoice, setSelectedVoice] = useState(LANG_CONFIG);
 
     const commands = voiceCommandsToggler ? retrieveCommandsToTrigger() : [];
@@ -42,9 +41,7 @@ function Render() {
 
     const [trancriptedContent, setTranscriptedContent] = useState(listening);
 
-    useEffect(() => {
-        setTranscriptedContent(transcript);
-    }, [transcript])
+    useTranscriptedContent(transcript, setTranscriptedContent);
 
     useGSAPDemoPageAnimations();
 
