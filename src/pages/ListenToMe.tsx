@@ -30,14 +30,7 @@ function Render() {
 
     const commands = voiceCommandsToggler ? retrieveCommandsToTrigger() : [];
 
-    const {
-        transcript,
-        listening,
-        resetTranscript,
-        interimTranscript,
-        browserSupportsSpeechRecognition,
-        isMicrophoneAvailable,
-    } = useSpeechRecognition({ commands });
+    const { transcript, listening, resetTranscript, interimTranscript, browserSupportsSpeechRecognition, isMicrophoneAvailable } = useSpeechRecognition({ commands });
 
     const [trancriptedContent, setTranscriptedContent] = useState(listening);
 
