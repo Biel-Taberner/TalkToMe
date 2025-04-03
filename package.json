@@ -31,7 +31,8 @@
     "react-flagkit": "^2.0.4",
     "react-i18next": "^15.4.1",
     "react-responsive": "^10.0.1",
-    "react-router-dom": "^7.4.0"
+    "react-router-dom": "^7.4.0",
+    "react-speech-recognition": "^4.0.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

@@ -129,16 +129,16 @@ export function useGSAPHomePageAnimations(iconsRef : SVGSVGElement[], sectionsRe
     })
 }
 
+const scrollTriggerConfig = {
+    trigger: ".section-4",
+    start: "top 100%",
+};
+
 export function useGSAPDemoPageAnimations() {
     useGSAP(() => {
         const sections = [".section-1", ".section-2", ".section-3", ".section-4"];
-        const button = ".action-button";
-        const scrollTriggerConfig = {
-          trigger: ".section-4",
-          start: "top 100%",
-        };
       
-        gsap.set([...sections, button], { y: 20, alpha: 0 });
+        gsap.set([...sections], { y: 20, alpha: 0 });
       
         gsap.to(sections.slice(0, 3), {
           alpha: 1,
@@ -147,7 +147,7 @@ export function useGSAPDemoPageAnimations() {
           y: 0,
         });
       
-        [".section-4", button].forEach(selector => {
+        [".section-4"].forEach(selector => {
           gsap.to(selector, {
             alpha: 1,
             duration: 1,
@@ -156,22 +156,7 @@ export function useGSAPDemoPageAnimations() {
             scrollTrigger: scrollTriggerConfig,
           });
         });
-      }, []);
-    
-      document.querySelectorAll(".action-button").forEach((iconButton) => {
-        iconButton.addEventListener("mouseover", (e) => {
-          gsap.to(iconButton, {
-            ease: "power1",
-            scale: 1.075,
-          });
-        });
-      
-        iconButton.addEventListener("mouseout", (e) => {
-          gsap.to(iconButton, {
-            scale: 1,
-          });
-        });
-    });
+    }, []);
 }
 
 export function useGSAPButtonAnimations() {

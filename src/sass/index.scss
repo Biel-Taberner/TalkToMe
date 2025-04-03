@@ -8,6 +8,8 @@ $blueBg: #69e0f0;
 );
 
 @use "../components/button/FuncButton.scss";
+@use "../components/input/slider/SliderInput.scss";
+@use "../components/textarea/Textarea.scss";
 
 .icon-text-gap {
   column-gap: 12px;
@@ -54,4 +56,8 @@ $blueBg: #69e0f0;
 
 .link-navbar-container {
   height: 50px;
+}
+
+.disable-page {
+  opacity: 0.5;
 }

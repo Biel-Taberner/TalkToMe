@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Container from "../components/container/Container";
 import Flag from "react-flagkit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faStop, faPause, faEject, faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import SpeechInput from "../components/input/SpeechInput";
+import { faPlay, faStop, faPause, faEject, faCaretDown, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import SpeechInput from "../components/input/speech/SpeechInput.tsx";
 import FuncButton from "../components/button/FuncButton.tsx";
 import BlockInfo from "../components/block/BlockInfo";
 import { t } from "i18next";
@@ -13,6 +13,11 @@ import { useVoices } from "../hooks/voice/useVoice.ts";
 import { SPEECH_CONFIG_DEFAULT } from "../constants/speech_synthesis/speech_synthesis.ts";
 
 const Render = () => {
+
+  if ('speechSynthesis' in window) {
+    console.log("It is supported")
+  }
+
   const [dropdown, setDropdown] = useState(false);
   const [dropdownVoices, setDropdownVoices] = useState(false);
   const [paused, setIsPaused] = useState(false);
@@ -25,6 +30,14 @@ const Render = () => {
   return (
     <div className="content mt-6">
       <section className="section">
+
+        <div className="mt-6 has-background-danger-light box">
+          <div className="is-flex icon-text-gap">
+            <FontAwesomeIcon icon={faCircleExclamation} size="xl" />
+            <div>Tu navegador no soporta</div>
+          </div>
+        </div>
+
         <h1 className="section-1 title is-1 mt-6">{ t('demo_section_1_title') }</h1>
         <p className="section-1 subtitle mt-3">
           { t('demo_section_1_subtitle') }
@@ -64,21 +77,21 @@ const Render = () => {
         <div className="mt-6 section-2">
           <div className="columns">
             <div className="column">
-              <BlockInfo title={t('rate')} voiceProp={t('rate').toLowerCase()} determinant={t("f_determinant")} />
+              <BlockInfo titleI18next={t('rate')} voiceProp={t('rate').toLowerCase()} determinant={t("f_determinant")} />
               <SpeechInput showCurrentValue fieldKey="rate" type="range" minValue={0.1} maxValue={1} value={speechSynthesisConfig.rate} speechConfigKeyCallback={() => handleChange} isNumericValue />
             </div>
             <div className="column">
-              <BlockInfo title={t('pitch')} voiceProp={t('pitch').toLowerCase()} determinant={t("m_determinant")} />
+              <BlockInfo titleI18next={t('pitch')} voiceProp={t('pitch').toLowerCase()} determinant={t("m_determinant")} />
               <SpeechInput showCurrentValue fieldKey="pitch" type="range" minValue={0} maxValue={2} value={speechSynthesisConfig.pitch} speechConfigKeyCallback={() => handleChange} isNumericValue />
             </div>
           </div>
-          <BlockInfo title={t('volume')} voiceProp={t('volume').toLowerCase()} determinant={t("m_determinant")} />
+          <BlockInfo titleI18next={t('volume')} voiceProp={t('volume').toLowerCase()} determinant={t("m_determinant")} />
           <SpeechInput showCurrentValue fieldKey="volume" type="range" minValue={0} maxValue={1} value={speechSynthesisConfig.volume} speechConfigKeyCallback={() => handleChange} isNumericValue />
         </div>
 
         <div className="mt-6">
           <div className="section-3">
-            <BlockInfo title={t('voice')} voiceProp={t('voice').toLowerCase()} determinant={t("f_determinant")} />  
+            <BlockInfo titleI18next={t('voice')} voiceProp={t('voice').toLowerCase()} determinant={t("f_determinant")} />  
           </div>
           <div className="is-widescreen mt-3">
             <div className={`dropdown maxWidth ${dropdownVoices ? 'is-active' : ''}`} onClick={() => setDropdownVoices(!dropdownVoices)}>
@@ -115,9 +128,9 @@ const Render = () => {
         </div>
 
         <div className="buttons mt-5">
-          <FuncButton color="is-success" isOutlined icon={faPlay} text={ t('play_button_text') } callback={() => handleAudioControl('play', paused, textToSpeak, speechSynthesisConfig)} />
-          <FuncButton color="is-warning" isOutlined icon={faPause} text={t('pause_button_text')} isPaused={{ pauseRef: paused, textForResuming: t('resume_button_text'), iconForResuming: faEject }} callback={() => { setIsPaused(!paused); handleAudioControl(paused ? 'resume' : 'pause', paused, textToSpeak, speechSynthesisConfig); }} />
-          <FuncButton color="is-danger" isOutlined icon={faStop} text={ t('stop_button_text') } callback={() => handleAudioControl('stop', paused, textToSpeak, speechSynthesisConfig)} />
+          <FuncButton color="is-success" isOutlined icon={faPlay} textI18n={ t('play_button_text') } callback={() => handleAudioControl('play', paused, textToSpeak, speechSynthesisConfig)} />
+          <FuncButton color="is-warning" isOutlined icon={faPause} textI18n={t('pause_button_text')} isPaused={{ pauseRef: paused, textForResuming: t('resume_button_text'), iconForResuming: faEject }} callback={() => { setIsPaused(!paused); handleAudioControl(paused ? 'resume' : 'pause', paused, textToSpeak, speechSynthesisConfig); }} />
+          <FuncButton color="is-danger" isOutlined icon={faStop} textI18n={ t('stop_button_text') } callback={() => handleAudioControl('stop', paused, textToSpeak, speechSynthesisConfig)} />
         </div>
       </section>
     </div>

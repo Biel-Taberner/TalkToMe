@@ -5,6 +5,7 @@ import Layout from "./components/layout/Layout.tsx";
 import Demo from "./pages/Demo.tsx";
 import Documentation from "./pages/Documentation.tsx";
 import Footer from "./components/footer/Footer.tsx";
+import ListenToMe from "./pages/ListenToMe.tsx";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/">
           <Route index element={<Home/>}/>
           <Route path="demo" element={<Demo/>}/>
+          <Route path="listen-to-me" element={<ListenToMe/>}/>
           <Route path="documentation" element={<Documentation />}/>
         </Route>
       </Routes>
