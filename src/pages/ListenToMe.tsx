@@ -15,6 +15,7 @@ import DropdownContainer from "../components/dropdown/container/DropdownContaine
 import { t } from "i18next";
 import { LANG_CONFIG } from "../constants/languages/language.ts";
 import BlockInfoList from "../components/block/BlockInfoList.tsx";
+import retrieveCommandsToTrigger from "../constants/commands/commands.ts";
 
 function Render() {
 
@@ -28,16 +29,7 @@ function Render() {
     const { languages } = useVoices(speechSynthesisConfig.langCode);
     const [selectedVoice, setSelectedVoice] = useState(LANG_CONFIG);
 
-    const commands = voiceCommandsToggler ? [
-        {
-            command: t('voice_commands_command_1'),
-            callback: (site) => window.open(`https://www.${site}.com`, "_blank")
-        },
-        {
-            command: "Buscar * en Google",
-            callback: (query) => window.open(`https://www.google.com/search?q=${query}`, "_blank")
-        },
-    ] : [];
+    const commands = voiceCommandsToggler ? retrieveCommandsToTrigger() : [];
 
     const {
         transcript,
