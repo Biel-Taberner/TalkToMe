@@ -14,6 +14,7 @@ import { setVoiceToUse } from "../components/dropdown/content/DropdownContent.ts
 import DropdownContainer from "../components/dropdown/container/DropdownContainer.tsx";
 import { t } from "i18next";
 import { LANG_CONFIG } from "../constants/languages/language.ts";
+import BlockInfoList from "../components/block/BlockInfoList.tsx";
 
 function Render() {
 
@@ -86,18 +87,7 @@ function Render() {
 
                     {
                         voiceCommandsToggler &&
-                            <div className="section-3 mt-6">
-                                <div className="is-flex title icon-text-gap is-align-items-center"> 
-                                    <div>{ t('voice_commands_list_title') }</div>
-                                </div>
-                                <p className="subtitle mt-3">
-                                    { t('voice_commands_list_subtitle') }
-                                </p>
-                                <ul className="subtitle">
-                                    <li>{ t('voice_commands_command_1') }</li>
-                                    <li>{ t('voice_commands_command_2') }</li>
-                                </ul>
-                            </div>
+                            <BlockInfoList mainTitleI18n="voice_commands_list_title" descriptionI18n="voice_commands_list_subtitle" contentList18n={["voice_commands_command_1", "voice_commands_command_2"]} />
                     }
                     
                     <div className="mt-6 section-3">
