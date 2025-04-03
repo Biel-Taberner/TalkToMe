@@ -12,10 +12,10 @@ import Subsection from "../components/subsection/Subsection.tsx";
 import Textarea from "../components/textarea/Textarea.tsx";
 import { setVoiceToUse } from "../components/dropdown/content/DropdownContent.ts";
 import DropdownContainer from "../components/dropdown/container/DropdownContainer.tsx";
-import { t } from "i18next";
 import { LANG_CONFIG } from "../constants/languages/language.ts";
 import BlockInfoList from "../components/block/BlockInfoList.tsx";
 import retrieveCommandsToTrigger from "../constants/commands/commands.ts";
+import BlockInfo from "../components/block/BlockInfo.tsx";
 
 function Render() {
 
@@ -56,10 +56,7 @@ function Render() {
                         <ErrorModal icon={faCircleExclamation} contentI18n="browser_not_support_speech_recognition" />
                 }
                 <div className={!browserSupportsSpeechRecognition ? 'disable-page' : ''}>
-                    <h1 className="section-1 title is-1 mt-6">ListenToMe</h1>
-                    <p className="section-1 subtitle mt-3">
-                        { t('listenToMe_subtitle') }
-                    </p>
+                    <BlockInfo titleI18next="ListenToMe" titleContentClasses="section-1 is-capitalized title is-1 mt-6" descriptionI18next="listenToMe_subtitle" descriptionContentClasses="section-1 subtitle mt-3" />
 
                     <DropdownContainer 
                         dropdownTrigger={dropdown}
@@ -83,9 +80,7 @@ function Render() {
                     }
                     
                     <div className="mt-6 section-3">
-                        <div className="title">
-                            { t('transcription') }
-                        </div>
+                        <BlockInfo titleI18next="transcription" titleContentClasses="title" displayDescription={false} />
                         {
                             !isMicrophoneAvailable &&
                                 <ErrorModal icon={faCircleExclamation} wantsTopMargin={false} contentI18n="microphone_not_enabled" />

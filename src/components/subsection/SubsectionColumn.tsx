@@ -1,4 +1,3 @@
-import { t } from "i18next";
 import React from "react";
 import BlockInfo from "../block/BlockInfo";
 import SliderInput from "../input/slider/SliderInput";
