@@ -13,14 +13,11 @@ export default function BlockInfo({ titleI18next, descriptionI18next, titleConte
     return (
         <>
             <div className={titleContentClasses}>
-                {/* <Trans i18nKey={"demo_section_2_title"} values={{ prop: titleI18next }} /> */}
                 { t(titleI18next) }
             </div>
             {
                 displayDescription &&
                 <div className={descriptionContentClasses}>
-                    {/* <Trans i18nKey={"demo_section_2_title_subtitle"} values={{ prop: titleI18next, voiceProp: voiceProp, determinant: determinant }} components={{ 1: <code className="is-lowercase"/> }}>
-                    </Trans> */}
                     { t(descriptionI18next) }
                 </div>
             }

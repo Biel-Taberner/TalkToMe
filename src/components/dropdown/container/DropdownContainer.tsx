@@ -13,7 +13,7 @@ interface DropdownContainerProps {
     toggleHelperText?: DropdownToggleHelperProps;
     callback?: (...args : any) => void;
     callbackDropdown: (...args : any) => void;
-    setterDropdownCallback: (...args : any) => void;
+    setterDropdownCallback?: (...args : any) => void;
 }
 
 interface DropdownToggleHelperProps {

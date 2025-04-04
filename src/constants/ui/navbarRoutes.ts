@@ -1,7 +1,7 @@
 export const NAVBAR_ROUTES = [
     {
         name: "TalkToMe",
-        route: "/demo",
+        route: "/talk-to-me",
     },
     {
         name: "ListenToMe",

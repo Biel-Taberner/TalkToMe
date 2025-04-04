@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import React from "react";
 import Flag from "react-flagkit";
 
@@ -6,23 +7,27 @@ interface DropdownContentProps {
     displayIcon?: boolean;
     propertyInArray: string;
     callback: (...args : any) => void;
-    setterCallback: (...args : any) => void;
+    setterCallback?: (...args : any) => void;
 }
 
 export default function DropdownContent({ languagesToMap, callback, setterCallback, displayIcon = true, propertyInArray } : DropdownContentProps) {
     return (
         <div className="dropdown-menu maxWidth" id="dropdown-menu" role="menu">
             <div className="dropdown-content p-3 dropdown-content-height">
-                {
-                    languagesToMap.map((voice, i) => (
-                        <div key={i} className="dropdown-country-item icon-text-gap p-3 is-flex is-justify-content-start" onClick={() => callback(voice, setterCallback)}>
-                            {
-                                displayIcon &&
-                                    <Flag country={voice.langCode.split("-")[1]} />
-                            }
-                            <div className="has-text-black is-capitalized">{voice[propertyInArray]}</div>
-                        </div>
-                    ))
+                {   languagesToMap.length > 0 ?
+                        languagesToMap.map((voice, i) => (
+                            <div key={i} className="dropdown-country-item icon-text-gap p-3 is-flex is-justify-content-start" onClick={() => callback(voice, setterCallback)}>
+                                {
+                                    displayIcon &&
+                                        <Flag country={voice?.langCode.split("-")[1]} />
+                                }
+                                <div className="has-text-black is-capitalized">{voice[propertyInArray]}</div>
+                            </div>
+                        ))
+                    :
+                    <div className="p-2 is-flex is-justify-content-start">
+                        <p className="has-text-black is-italic has-text-grey">{ t('demo_section_2_voice_dropdown_no_opts') }</p>
+                    </div>
                 }
             </div>
         </div>

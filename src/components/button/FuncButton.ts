@@ -1,7 +1,7 @@
-export function handleAudioControl (action: 'play' | 'stop' | 'pause' | 'resume', paused: boolean, text: string, speechConfig: any) {
+export function handleAudioControl (action: 'play' | 'stop' | 'pause' | 'resume', paused: boolean, text: string, speechConfig: SpeechSynthesisUtterance, voiceConfig : SpeechSynthesisVoice, langConfig : string) {
   const s = new SpeechSynthesisUtterance(text);
-  s.lang = speechConfig?.langCode;
-  s.voice = speechConfig?.voice;
+  s.lang = langConfig;
+  s.voice = Object.keys(voiceConfig).length > 0 ? voiceConfig : null;
   s.pitch = speechConfig?.pitch;
   s.rate = speechConfig?.rate;
   s.volume = speechConfig?.volume;
@@ -58,18 +58,14 @@ export function handleConfiguration(nameVal: string, flagCodeVal: string, langCo
   }));
 };
 
-export function handleChange(key: string, val: any, isNumber: boolean, setterCallback: (value: React.SetStateAction<{
-    name: string;
-    flagCode: string;
-    langCode: string;
-    voice: null;
+export function handleChange(key: string, val: any, setterCallback: (value: React.SetStateAction<{
     pitch: number;
     rate: number;
     volume: number;
 }>) => void) {
     setterCallback(prevState => ({
         ...prevState,
-        [key]: isNumber ? Number(val) : val
+        [key]: Number(val)
     }));
 };
 
