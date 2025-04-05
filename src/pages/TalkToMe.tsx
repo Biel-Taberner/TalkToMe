@@ -54,7 +54,7 @@ const Render = () => {
             callbackDropdown={setVoiceToUse}
             setterDropdownCallback={setSelectedLanguage}
             propertyInArray="name"
-            toggleHelperText={{ toggleRef: true, i18nHelperText: "listenToMe_lang_helper_text" }}
+            toggleHelperText={{ toggleRef: true, i18nHelperText: "demo_section_1_dropdown_helper" }}
           />
 
           <div className="mt-6 section-2">
@@ -94,7 +94,7 @@ const Render = () => {
               languagesToMap={voices}
               callbackDropdown={setSelectedVoice}
               propertyInArray="name"
-              toggleHelperText={{ toggleRef: true, i18nHelperText: "listenToMe_lang_helper_text" }}
+              toggleHelperText={{ toggleRef: true, i18nHelperText: "demo_section_2_voice_dropdown_helper" }}
               displayIconInTrigger={false}
               displayIconInTriggerContent={false}
             />
