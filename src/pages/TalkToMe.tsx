@@ -14,6 +14,7 @@ import Textarea from "../components/textarea/Textarea.tsx";
 import { LANG_CONFIG } from "../constants/languages/language.ts";
 import { setVoiceToUse } from "../components/dropdown/content/DropdownContent.ts";
 import Subsection from "../components/subsection/Subsection.tsx";
+import { useSpeechSynthesis } from "../hooks/speechSynthesis/useSpeechSynthesis.ts";
 
 const Render = () => {
 
@@ -27,11 +28,7 @@ const Render = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<{ name: "", flagCode: "", langCode: "" }>(LANG_CONFIG);
   const { voices, languages } = useVoices(selectedLanguage.langCode);
 
-  useEffect(() => {
-    if ('speechSynthesis' in window) {
-      setSpeechSynthesisSupport(true);
-    }
-  }, [])
+  useSpeechSynthesis(setSpeechSynthesisSupport);
 
   useGSAPDemoPageAnimations();
 
