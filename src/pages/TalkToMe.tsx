@@ -4,7 +4,7 @@ import { faPlay, faStop, faPause, faEject, faCircleExclamation } from '@fortawes
 import FuncButton from "../components/button/FuncButton.tsx";
 import BlockInfo from "../components/block/BlockInfo.tsx";
 import { t } from "i18next";
-import { useGSAPDemoPageAnimations } from "../hooks/gsap-animations/useGSAPAnimations.ts";
+import { useGSAPDemoPageAnimations, useGSAPSectionScrollAnimations } from "../hooks/gsap-animations/useGSAPAnimations.ts";
 import { handleAudioControl, handleChange } from "../components/button/FuncButton.ts";
 import { useVoices } from "../hooks/voice/useVoice.ts";
 import { SPEECH_CONFIG_DEFAULT } from "../constants/speech_synthesis/speech_synthesis.ts";
@@ -34,6 +34,8 @@ const Render = () => {
   }, [])
 
   useGSAPDemoPageAnimations();
+
+  useGSAPSectionScrollAnimations();
 
   return (
     <div className="content mt-6">

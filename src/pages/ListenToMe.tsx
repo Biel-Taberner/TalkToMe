@@ -4,7 +4,7 @@ import { faCheck, faCircleExclamation, faCopy, faMicrophone, faMicrophoneSlash, 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import { useVoices } from "../hooks/voice/useVoice";
 import FuncButton from "../components/button/FuncButton.tsx";
-import { useGSAPDemoPageAnimations } from "../hooks/gsap-animations/useGSAPAnimations.ts";
+import { useGSAPDemoPageAnimations, useGSAPSectionScrollAnimations } from "../hooks/gsap-animations/useGSAPAnimations.ts";
 import ErrorModal from "../components/error/ErrorModal.tsx";
 import { copyContentButton, startListening, stopListening } from "../components/button/FuncButton.ts";
 import Subsection from "../components/subsection/Subsection.tsx";
@@ -37,6 +37,8 @@ function Render() {
     useTranscriptedContent(transcript, setTranscriptedContent);
 
     useGSAPDemoPageAnimations();
+
+    useGSAPSectionScrollAnimations();
 
     return (
         <div className="content mt-6">

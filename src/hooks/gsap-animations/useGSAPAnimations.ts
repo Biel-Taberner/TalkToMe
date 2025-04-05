@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react"
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap"
 import Letterize from "letterizejs"
+import { SCROLL_TRIGGER_CONFIG } from "../../constants/gsap-animations/scrollTriggerConfig";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -104,6 +105,32 @@ export function useGSAPHomePageAnimations(iconsRef : SVGSVGElement[], sectionsRe
 
     }, [])
 
+    /* useGSAP(() => {
+        let sections = gsap.utils.toArray(".section-scroll")
+
+        sections.forEach((section, i) => {
+
+            gsap.set(section, {
+                alpha: 0,
+                y: 15,
+            })
+    
+            gsap.to(section, {
+                alpha: 1,
+                stagger: 1,
+                y: 0,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 100%",
+                    toggleActions: "play none none none",
+                }
+            })
+
+        })
+    }) */
+}
+
+export function useGSAPSectionScrollAnimations() {
     useGSAP(() => {
         let sections = gsap.utils.toArray(".section-scroll")
 
@@ -126,13 +153,8 @@ export function useGSAPHomePageAnimations(iconsRef : SVGSVGElement[], sectionsRe
             })
 
         })
-    })
+    }, [])
 }
-
-const scrollTriggerConfig = {
-    trigger: ".section-4",
-    start: "top 100%",
-};
 
 export function useGSAPDemoPageAnimations() {
     useGSAP(() => {
@@ -163,7 +185,7 @@ export function useGSAPDemoPageAnimations() {
                 y: 0,
                 stagger: 0.25,
                 scrollTrigger: {
-                    ...scrollTriggerConfig,
+                    ...SCROLL_TRIGGER_CONFIG,
                     once: true
                 }
             });
