@@ -30,6 +30,7 @@
         "talkToMe_page_rate_description": "The rate property gets and sets the speed at which the utterance will be spoken at.",
         "talkToMe_page_pitch_description": "The pitch property gets and sets the pitch at which the utterance will be spoken at.",
         "talkToMe_page_volume_description": "The volume property gets and sets the volume that the utterance will be spoken at.",
+        "speech_synthesis_not_supported": "Your browser does not support the speech synthesizer. Please switch to a different browser.",
         "listenToMe_subtitle": "Before using this service, we invite you to customize any of the following properties in order to guarantee a faithful & precise transcription.",
         "listenToMe_provisional_transcription_placeholder": "Your provisional transcription will appear here.",
         "listenToMe_transcription_placeholder": "Your transcriptied content will appear here.",

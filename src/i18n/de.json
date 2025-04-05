@@ -30,6 +30,7 @@
         "talkToMe_page_rate_description": "Die Rate-Eigenschaft erhält und setzt die Geschwindigkeit, mit der die Äußerung gesprochen wird.",
         "talkToMe_page_pitch_description": "Die Tonhöhe-Eigenschaft erhält und setzt die Tonhöhe, in der die Äußerung gesprochen wird.",
         "talkToMe_page_volume_description": "Die Lautstärke-Eigenschaft erhält und setzt die Lautstärke, mit der die Äußerung gesprochen wird.",
+        "speech_synthesis_not_supported": "Ihr Browser unterstützt den Sprachsynthesizer nicht. Bitte wechseln Sie den Browser.",
         "listenToMe_subtitle": "Bevor du diesen Dienst nutzt, laden wir dich ein, die folgenden Eigenschaften anzupassen, um sicherzustellen, dass die Transkription so genau und authentisch wie möglich ist.",
         "listenToMe_provisional_transcription_placeholder": "Ihre vorläufige Transkription wird hier erscheinen.",
         "listenToMe_transcription_placeholder": "Ihr transkribierter Inhalt wird hier erscheinen.",

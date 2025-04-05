@@ -39,7 +39,7 @@ const Render = () => {
       <section className="section section-scroll">
         {
           !speechSynthesisSupport &&
-            <ErrorModal icon={faCircleExclamation} contentI18n="browser_not_support_speech_recognition" />
+            <ErrorModal icon={faCircleExclamation} contentI18n="speech_synthesis_not_supported" />
         }
         <div className={`${speechSynthesisSupport ? '' : 'disable-page'}`}>
           <BlockInfo titleI18next="TalkToMe" titleContentClasses={`section-1 title is-1 mt-6`} descriptionI18next="demo_section_1_subtitle" descriptionContentClasses="section-1 subtitle mt-3" />
