@@ -141,52 +141,50 @@ export function useGSAPDemoPageAnimations() {
         gsap.set([...sections], { y: 20, alpha: 0 });
       
         gsap.to(sections.slice(0, 3), {
-          alpha: 1,
-          stagger: 0.25,
-          duration: 1,
-          y: 0,
+            alpha: 1,
+            stagger: 0.25,
+            duration: 1,
+            y: 0,
+        });
+
+        sections.slice(0,3).forEach(selector => {
+            gsap.to(selector, {
+                alpha: 1,
+                duration: 1,
+                y: 0,
+                stagger: 0.25,
+            });
         });
       
         [".section-4"].forEach(selector => {
-          gsap.to(selector, {
-            alpha: 1,
-            duration: 1,
-            y: 0,
-            stagger: 0.25,
-            scrollTrigger: scrollTriggerConfig,
-          });
+            gsap.to(selector, {
+                alpha: 1,
+                duration: 1,
+                y: 0,
+                stagger: 0.25,
+                scrollTrigger: {
+                    ...scrollTriggerConfig,
+                    once: true
+                }
+            });
         });
     }, []);
 }
 
-export function useGSAPButtonAnimations() {
+export function useGSAPButtonAnimation() {
     useGSAP(() => {
+        const buttons = document.querySelectorAll(".action-button");
 
-        const button = ".action-button";
+        if (!buttons.length) return;
 
-        gsap.set(button, { y: 20, alpha: 0 });
-    
-        gsap.to(button, {
-            alpha: 1,
-            duration: 1,
-            y: 0,
-            stagger: 0.25,
-        });
-    
-        document.querySelectorAll(button).forEach((iconButton) => {
-            iconButton.addEventListener("mouseover", (e) => {
-              gsap.to(iconButton, {
-                ease: "power1",
-                scale: 1.075,
-              });
+        buttons.forEach((btn) => {
+            btn.addEventListener("mouseenter", () => {
+                gsap.to(btn, { scale: 1.075, duration: 0.2 });
             });
-          
-            iconButton.addEventListener("mouseout", (e) => {
-              gsap.to(iconButton, {
-                scale: 1,
-              });
+            btn.addEventListener("mouseleave", () => {
+                gsap.to(btn, { scale: 1, duration: 0.2 });
             });
         });
 
-    }, [])
+    }, []);
 }

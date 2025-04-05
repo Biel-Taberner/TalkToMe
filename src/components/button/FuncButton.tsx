@@ -1,7 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useGSAPButtonAnimations } from "../../hooks/gsap-animations/useGSAPAnimations";
+import React, { useRef } from "react";
+import { useGSAPButtonAnimation } from "../../hooks/gsap-animations/useGSAPAnimations";
 import { t } from "i18next";
 
 interface ButtonProps {
@@ -32,7 +32,7 @@ interface ToggableProps {
 
 export default function FuncButton({ color, icon, textI18n, isOutlined, callback, speechConfig, textToSpeak, isPaused, isToggable, isDisabled } : ButtonProps) {
     
-    useGSAPButtonAnimations();
+    useGSAPButtonAnimation();
     
     return (
         <button disabled={isDisabled} className={`action-button button ${isOutlined ? 'is-outlined' : ''} ${isToggable?.toggleRef ? isToggable?.toggableColor : color}`} onClick={(e) => callback(textToSpeak, speechConfig)}>
