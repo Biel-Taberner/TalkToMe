@@ -16,6 +16,7 @@ import BlockInfoList from "../components/block/BlockInfoList.tsx";
 import retrieveCommandsToTrigger from "../constants/commands/commands.ts";
 import BlockInfo from "../components/block/BlockInfo.tsx";
 import useTranscriptedContent from "../hooks/voice/useTranscriptedContent.ts";
+import { t } from "i18next";
 
 function Render() {
 
@@ -71,7 +72,7 @@ function Render() {
 
                         {
                             voiceCommandsToggler &&
-                                <BlockInfoList mainTitleI18n="voice_commands_list_title" descriptionI18n="voice_commands_list_subtitle" contentList18n={["voice_commands_command_1", "voice_commands_command_2"]} />
+                                <BlockInfoList mainTitleI18n="voice_commands_list_title" descriptionI18n="voice_commands_list_subtitle" commandsToDisplay={commands} />
                         }
                         
                         <div className="mt-6 section-3">

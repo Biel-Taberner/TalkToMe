@@ -4,10 +4,10 @@ import React from "react";
 interface BlockInfoListProps {
     mainTitleI18n: string;
     descriptionI18n: string;
-    contentList18n: string[];
+    commandsToDisplay: Object[];
 }
 
-export default function BlockInfoList({ mainTitleI18n, descriptionI18n, contentList18n } : BlockInfoListProps) {
+export default function BlockInfoList({ mainTitleI18n, descriptionI18n, commandsToDisplay } : BlockInfoListProps) {
     
     return (
         <div className="section-3 mt-6">
@@ -19,7 +19,7 @@ export default function BlockInfoList({ mainTitleI18n, descriptionI18n, contentL
             </p>
             <ul className="subtitle">
                 {
-                    contentList18n.map((content: string, i: number) => <li key={i}>{ t(content) }</li>)
+                    commandsToDisplay.map((commandToDisplay: Object, i: number) => <li key={i}>{ commandToDisplay?.name }</li>)
                 }
             </ul>
         </div>
