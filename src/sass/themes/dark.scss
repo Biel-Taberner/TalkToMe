@@ -1,0 +1,12 @@
+@use "sass:color";
+@use "../utilities/colors.scss" as *;
+
+[data-theme="dark"] {
+  --info-color: var(--info-color-dark);
+  --bg-color: var(--dark-white-color);
+  --grey-color: darken(#{$greyColor}, 20%);
+  --info-color-dark-hover: #{darken($darkBlueBg, 3%)};
+  --dark-grey-color: #{$darkerDarkGreyColor};
+  --dark-color: #{$darkerDarkColor};
+  --invert-filter-value: 1;
+}

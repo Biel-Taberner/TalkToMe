@@ -1,0 +1,13 @@
+@use "sass:color";
+
+$blueBg: #69e0f0;
+$darkBlueBg: color.scale($blueBg, $lightness: -80%, $saturation: -15%);
+$greyColor: hsl(0, 0%, 86%);
+$whiteBg: hsl(0, 0%, 100%);
+$darkWhiteBg: darken($whiteBg, 95%);
+$darkGreyColor: hsl(221, 14%, 48%);
+$darkerDarkGreyColor: darken($darkGreyColor, 45%);
+$darkColor: #2E333D;
+$darkerDarkColor: darken($darkColor, 45%);
+
+$info: $blueBg;

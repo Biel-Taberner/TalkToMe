@@ -33,17 +33,17 @@ export default function Footer() {
                         <div className="mb-5 is-flex is-justify-content-flex-start icon-text-gap">
                             <div>
                                 <a target="_blank" href="https://www.linkedin.com/in/gabriel-taberner-69aa68311">
-                                    <img className="image is-32x32" src="https://files.softicons.com/download/social-media-icons/flat-gradient-social-icons-by-guilherme-lima/png/512x512/Linkedin.png" alt="linkedin"/>
+                                    <img className="image is-32x32" src="linkedIn_logo.png" alt="linkedin"/>
                                 </a>
                             </div>
                             <div>
                                 <a target="_blank" href="https://www.instagram.com/_bbiillyy03_/">
-                                    <img className="image is-32x32" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="instagram"/>
+                                    <img className="image is-32x32" src="instagram_logo.png" alt="instagram"/>
                                 </a>
                             </div>
                             <div>
                                 <a target="_blank" href="https://github.com/Biel-Taberner">
-                                    <img className="image is-32x32" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github"/>
+                                    <img className="image is-32x32" src="github_logo.png" alt="github"/>
                                 </a>
                             </div>
                         </div>

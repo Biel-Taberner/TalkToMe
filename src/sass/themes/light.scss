@@ -1,0 +1,14 @@
+@use "sass:color";
+@use "../utilities/colors.scss" as *;
+
+:root {
+    --info-color: #{$blueBg};
+    --info-color-dark: #{$darkBlueBg};
+    --bg-color: #{$whiteBg};
+    --grey-color: #{$greyColor};
+    --dark-white-color: #{$darkWhiteBg};
+    --info-color-dark-hover: #{color.adjust($blueBg, $lightness: -10%)};
+    --dark-grey-color: #{$darkGreyColor};
+    --dark-color: #{$darkColor};
+    --invert-filter-value: 0;
+}

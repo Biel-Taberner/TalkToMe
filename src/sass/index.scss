@@ -1,15 +1,40 @@
-$blueBg: #69e0f0;
+@use "bulma/sass/utilities/derived-variables" as dv;
 
-// Path to Bulma's sass folder
-@use "bulma/sass" with (
-  $info: $blueBg,
-  $textarea-min-height: 200px,
-  $textarea-max-height: 300px,
-);
+@forward "utilities";
+@forward "themes";
 
 @use "../components/button/FuncButton.scss";
 @use "../components/input/slider/SliderInput.scss";
 @use "../components/textarea/Textarea.scss";
+
+@use "bulma/bulma";
+
+@use "../components/input/toggler/ThemeToggler.scss";
+
+.has-background-info {
+  background-color: var(--info-color) !important;
+}
+.has-background-white {
+  background-color: var(--bg-color) !important;
+}
+.has-background-grey-lighter {
+  background-color: var(--grey-color) !important;
+}
+.has-background-grey {
+  background-color: var(--dark-grey-color) !important;
+}
+.has-background-dark {
+  background-color: var(--dark-color) !important;
+}
+.image {
+  filter: invert(var(--invert-filter-value));
+  transition: 0.3s;
+}
+.image:hover {
+  transform: scale(1.1);
+}
+
+
 
 .icon-text-gap {
   column-gap: 12px;
@@ -20,7 +45,7 @@ $blueBg: #69e0f0;
 }
 
 .navbar-item:hover, .navbar-link:hover {
-  background-color: darken($blueBg, 10%),
+  background-color: var(--info-color-dark-hover),
 }
 
 .navbar-item:focus {
@@ -52,10 +77,6 @@ $blueBg: #69e0f0;
 .dropdown-content-height {
   max-height: 200px;
   overflow-y: auto;
-}
-
-.link-navbar-container {
-  height: 50px;
 }
 
 .disable-page {

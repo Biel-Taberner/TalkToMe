@@ -21,12 +21,12 @@ export default function DropdownContent({ languagesToMap, callback, setterCallba
                                     displayIcon &&
                                         <Flag country={voice?.langCode.split("-")[1]} />
                                 }
-                                <div className="has-text-black is-capitalized">{voice[propertyInArray]}</div>
+                                <div className="is-capitalized">{voice[propertyInArray]}</div>
                             </div>
                         ))
                     :
                     <div className="p-2 is-flex is-justify-content-start">
-                        <p className="has-text-black is-italic has-text-grey">{ t('demo_section_2_voice_dropdown_no_opts') }</p>
+                        <p className="is-italic">{ t('demo_section_2_voice_dropdown_no_opts') }</p>
                     </div>
                 }
             </div>

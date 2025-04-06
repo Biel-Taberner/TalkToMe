@@ -9,6 +9,7 @@ import Language from "../../models/Language";
 import { useLanguageDetection } from "../../hooks/language/useLanguageDetection";
 import { handleLanguageChange } from "../../utils/language/handleLanguageChange";
 import { NAVBAR_ROUTES } from "../../constants/ui/navbarRoutes";
+import ThemeToggler from "../input/toggler/ThemeToggler.tsx";
 
 export default function Layout() {
 
@@ -65,8 +66,8 @@ export default function Layout() {
 
                             <div className="navbar-dropdown">
                                 {
-                                    NAVBAR_ROUTES.map((route: Object, i) => (
-                                        <Link key={i} className="navbar-item has-text-black" to={route?.route}>{route?.name}</Link>
+                                    NAVBAR_ROUTES.map((route: Object, i : number) => (
+                                        <Link key={i} className="navbar-item" to={route?.route}>{route?.name}</Link>
                                     ))
                                 }
                             </div>
@@ -76,7 +77,8 @@ export default function Layout() {
                 </div>
             </div>
 
-            <div className="navbar-menu is-flex-grow-0 is-align-items-center" id="navbarBasicExample">
+            <div className="navbar-menu is-flex-grow-0 is-align-items-center icon-text-gap" id="navbarBasicExample">
+                <ThemeToggler />
                 <div className="link-navbar-container">
                     <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link is-size-5">
@@ -86,8 +88,8 @@ export default function Layout() {
 
                         <div className="navbar-dropdown is-right">
                             {
-                                languages.map((lang, i) => (
-                                    <a key={i} className="navbar-item has-text-black is-capitalized" onClick={() => handleLanguageChange(lang, languages, setCurrentLanguage)}>
+                                languages.map((lang : any, i : number) => (
+                                    <a key={i} className="navbar-item is-capitalized" onClick={() => handleLanguageChange(lang, languages, setCurrentLanguage)}>
                                         <Flag country={lang.getFlagCode()} />
                                         { lang.getName() }
                                     </a>
