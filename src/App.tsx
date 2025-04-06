@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import React from "react";
 import Layout from "./components/layout/Layout.tsx";
@@ -18,6 +18,7 @@ function App() {
           <Route path="talk-to-me" element={<TalkToMe/>}/>
           <Route path="listen-to-me" element={<ListenToMe/>}/>
           <Route path="documentation" element={<Documentation />}/>
+          <Route path="*" element={<Navigate to='/' replace />} />
         </Route>
       </Routes>
       <Footer/>
