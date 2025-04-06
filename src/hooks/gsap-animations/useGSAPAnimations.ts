@@ -104,30 +104,6 @@ export function useGSAPHomePageAnimations(iconsRef : SVGSVGElement[], sectionsRe
         });
 
     }, [])
-
-    /* useGSAP(() => {
-        let sections = gsap.utils.toArray(".section-scroll")
-
-        sections.forEach((section, i) => {
-
-            gsap.set(section, {
-                alpha: 0,
-                y: 15,
-            })
-    
-            gsap.to(section, {
-                alpha: 1,
-                stagger: 1,
-                y: 0,
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 100%",
-                    toggleActions: "play none none none",
-                }
-            })
-
-        })
-    }) */
 }
 
 export function useGSAPSectionScrollAnimations() {
