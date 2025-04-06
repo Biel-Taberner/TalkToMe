@@ -190,3 +190,31 @@ export function useGSAPButtonAnimation() {
 
     }, []);
 }
+
+export function useProgressBarAnimations() {
+    useGSAP(() => {
+
+        document.querySelectorAll(".link-navbar-container").forEach((linkNavbar) => {
+
+            linkNavbar.addEventListener("mouseover", () => {
+
+                gsap.to(linkNavbar.children[1], {
+                    width: "100%",
+                    duration: 1,
+                })
+    
+            })
+    
+            linkNavbar.addEventListener("mouseout", () => {
+    
+                gsap.to(linkNavbar.children[1], {
+                    width: "0%",
+                    duration: 1,
+                })
+    
+            })
+
+        })
+
+    }, [])
+}

@@ -1,6 +1,5 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import React from "react";
+import { useProgressBarAnimations } from "../../hooks/gsap-animations/useGSAPAnimations";
 
 interface ProgressBarProps {
     bgColor?: string;
@@ -10,31 +9,7 @@ interface ProgressBarProps {
 
 export default function ProgressBar({ bgColor = "hsl(217, 71%, 53%)", width = "0px", height = "5px" } : ProgressBarProps) {
 
-    useGSAP(() => {
-
-        document.querySelectorAll(".link-navbar-container").forEach((linkNavbar) => {
-
-            linkNavbar.addEventListener("mouseover", () => {
-
-                gsap.to(linkNavbar.children[1], {
-                    width: "100%",
-                    duration: 1,
-                })
-    
-            })
-    
-            linkNavbar.addEventListener("mouseout", () => {
-    
-                gsap.to(linkNavbar.children[1], {
-                    width: "0%",
-                    duration: 1,
-                })
-    
-            })
-
-        })
-
-    }, [])
+    useProgressBarAnimations();
 
     return (
         <div id="progress" style={{ backgroundColor: bgColor, width: width, height: height }}></div>
