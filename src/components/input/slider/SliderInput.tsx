@@ -2,13 +2,14 @@ import React from "react";
 
 interface SliderInputProps {
     isDisabled?: boolean;
+    isChecked: boolean;
     callback: (...args : any) => void;
 }
 
-export default function SliderInput({ isDisabled, callback } : SliderInputProps) {
+export default function SliderInput({ isChecked, isDisabled, callback } : SliderInputProps) {
     return (
         <label className="switch">
-            <input disabled={isDisabled} type="checkbox" onChange={callback} />
+            <input disabled={isDisabled} checked={isChecked} type="checkbox" onChange={callback} />
             <span className="slider round"></span>
         </label>
     )

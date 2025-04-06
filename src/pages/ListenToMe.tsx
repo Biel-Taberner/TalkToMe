@@ -16,10 +16,12 @@ import BlockInfoList from "../components/block/BlockInfoList.tsx";
 import retrieveCommandsToTrigger from "../constants/commands/commands.ts";
 import BlockInfo from "../components/block/BlockInfo.tsx";
 import useTranscriptedContent from "../hooks/voice/useTranscriptedContent.ts";
-import { t } from "i18next";
+import { useCookies } from 'react-cookie';
+import { useSpeechSynthesisCookie, useSpeechSynthesisSetCookie } from "../hooks/speechSynthesis/useSpeechSynthesis.ts";
 
 function Render() {
 
+    const [cookies, setCookie, removeCookie] = useCookies();
     const [dropdown, setDropdown] = useState(false);
     const [microphoneAvailable, setMicrophoneAvailable] = useState(true);
     const [interimToggler, setInterimToggler] = useState(false);
@@ -36,6 +38,19 @@ function Render() {
     const [trancriptedContent, setTranscriptedContent] = useState(listening);
 
     useTranscriptedContent(transcript, setTranscriptedContent);
+
+    // Speech language configuration
+    useSpeechSynthesisCookie(cookies, "voiceRecognitionLanguageConfig", setSelectedLanguage);
+    useSpeechSynthesisSetCookie(selectedLanguage, "voiceRecognitionLanguageConfig", setCookie);
+
+    useSpeechSynthesisCookie(cookies, "voiceRecognitionInterimConfig", setInterimToggler);
+    useSpeechSynthesisSetCookie(interimToggler, "voiceRecognitionInterimConfig", setCookie);
+
+    useSpeechSynthesisCookie(cookies, "voiceRecognitionContinuousConfig", setContinuousToggler);
+    useSpeechSynthesisSetCookie(continuousToggler, "voiceRecognitionContinuousConfig", setCookie);
+
+    useSpeechSynthesisCookie(cookies, "voiceRecognitionCommandsConfig", setVoiceCommandsToggler);
+    useSpeechSynthesisSetCookie(voiceCommandsToggler, "voiceRecognitionCommandsConfig", setCookie);
 
     useGSAPDemoPageAnimations();
 
@@ -66,8 +81,8 @@ function Render() {
                         />
 
                         <div className="mt-6 section-2">
-                            <Subsection numOfSubsections={2} titleI18next={["provisional_transcription", "continuity"]} subsectionDescriptionI18next={["listenToMe_interimResult_description", "listenToMe_continuity_description"]} disableTrigger={!browserSupportsSpeechRecognition} callbacks={[() => setInterimToggler(!interimToggler), () => setContinuousToggler(!continuousToggler)]} />
-                            <Subsection numOfSubsections={1} titleI18next={["voice_commands"]} subsectionDescriptionI18next={["listenToMe_voice_commands_description"]} disableTrigger={!browserSupportsSpeechRecognition} callbacks={[() => setVoiceCommandsToggler(!voiceCommandsToggler)]} />
+                            <Subsection isChecked={[interimToggler, continuousToggler]} numOfSubsections={2} titleI18next={["provisional_transcription", "continuity"]} subsectionDescriptionI18next={["listenToMe_interimResult_description", "listenToMe_continuity_description"]} disableTrigger={!browserSupportsSpeechRecognition} callbacks={[() => setInterimToggler(!interimToggler), () => setContinuousToggler(!continuousToggler)]} />
+                            <Subsection isChecked={[voiceCommandsToggler]} numOfSubsections={1} titleI18next={["voice_commands"]} subsectionDescriptionI18next={["listenToMe_voice_commands_description"]} disableTrigger={!browserSupportsSpeechRecognition} callbacks={[() => setVoiceCommandsToggler(!voiceCommandsToggler)]} />
                         </div>
 
                         {
@@ -82,7 +97,7 @@ function Render() {
                                     <ErrorModal icon={faCircleExclamation} wantsTopMargin={false} contentI18n="microphone_not_enabled" />
                             }
                             <div className="buttons mt-5">
-                                <FuncButton isDisabled={!browserSupportsSpeechRecognition} isToggable={{ toggleRef: listening, toggableColor: "is-danger", toggableTextI18n: "stop", toggableIcon: faMicrophoneSlash }} color="is-link" isOutlined icon={faMicrophone} textI18n="listen" callback={() => { !listening ? startListening(isMicrophoneAvailable, setMicrophoneAvailable, SpeechRecognition, selectedVoice.langCode, continuousToggler, interimToggler) : stopListening(SpeechRecognition) }} />
+                                <FuncButton isDisabled={!browserSupportsSpeechRecognition} isToggable={{ toggleRef: listening, toggableColor: "is-danger", toggableTextI18n: "stop", toggableIcon: faMicrophoneSlash }} color="is-link" isOutlined icon={faMicrophone} textI18n="listen" callback={() => { !listening ? startListening(isMicrophoneAvailable, setMicrophoneAvailable, SpeechRecognition, selectedLanguage.langCode, continuousToggler, interimToggler) : stopListening(SpeechRecognition) }} />
                                 <FuncButton isDisabled={!browserSupportsSpeechRecognition} color="is-success" isOutlined icon={faTrash} textI18n="clear" callback={resetTranscript} />
                                 <FuncButton isDisabled={!browserSupportsSpeechRecognition} color={copyButtonTrigger ? "is-success" : "is-warning"} isOutlined icon={copyButtonTrigger ? faCheck : faCopy} textI18n={copyButtonTrigger ? "copied" : "copy"} callback={() => copyContentButton(trancriptedContent, setCopyButtonTrigger)} />
                             </div>

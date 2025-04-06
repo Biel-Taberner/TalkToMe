@@ -17,6 +17,16 @@ export default function Layout() {
     const [currentLanguage, setCurrentLanguage] = useState<Language>();
     const { languages } = useLanguageDetection<Language>(setCurrentLanguage);
 
+    const toggleBurgerMenu = () => {
+        const navbarBuger = document.getElementById("navbarBurger");
+        const navMenu = document.getElementById("navMenu");
+
+        navbarBuger?.addEventListener("click", () => { 
+            navMenu?.classList.toggle("is-active");
+            navMenu?.classList.toggle("is-hidden");
+        });
+    }
+
     return (
         <nav className="is-fixed-top navbar is-justify-content-space-between p-4 has-background-info" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -27,12 +37,19 @@ export default function Layout() {
                     </svg>
                 </a>
 
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a role="button" className="navbar-burger" id="navbarBurger" data-target="navMenu" aria-label="menu" aria-expanded="false" onClick={toggleBurgerMenu}>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
+            </div>
+
+            <div className="navbar-menu has-background-info is-hidden" id="navMenu">
+                <div className="navbar-end">
+                    <a className="navbar-item">My account</a>
+                    <a className="navbar-item">Shopping Cart (0)</a>
+                </div>
             </div>
 
             <div className="navbar-menu is-flex-grow-0" id="navbarBasicExample">

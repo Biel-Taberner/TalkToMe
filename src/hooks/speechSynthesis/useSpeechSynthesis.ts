@@ -17,9 +17,9 @@ export function useSpeechSynthesisCookie(cookies : any, keyToFind : string, setS
     }, []);
 }
 
-export function useSpeechSynthesisSetCookie(speechSynthesisConfig: {}, ketToSave : string, setCookie: (...args : any) => void) {
+export function useSpeechSynthesisSetCookie(speechSynthesisConfig: any, ketToSave : string, setCookie: (...args : any) => void) {
   useEffect(() => {
-    if (speechSynthesisConfig) {
+    if (speechSynthesisConfig || speechSynthesisConfig === false) {
       setCookie(ketToSave, speechSynthesisConfig, {
         path: "/",
       });
