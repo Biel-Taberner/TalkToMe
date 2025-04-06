@@ -4,7 +4,7 @@ import DropdownContent from "../content/DropdownContent.tsx";
 
 interface DropdownContainerProps {
     dropdownTrigger: boolean;
-    selectedLanguage: { name: string, flagCode?: string };
+    selectedLanguage: { name?: string, flagCode?: string };
     i18nDropdownText: string;
     languagesToMap: any[];
     displayIconInTriggerContent?: boolean;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Container from "../components/container/Container.tsx";
 import { faPlay, faStop, faPause, faEject, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import FuncButton from "../components/button/FuncButton.tsx";
@@ -12,26 +12,44 @@ import ErrorModal from "../components/error/ErrorModal.tsx";
 import DropdownContainer from "../components/dropdown/container/DropdownContainer.tsx";
 import Textarea from "../components/textarea/Textarea.tsx";
 import { LANG_CONFIG } from "../constants/languages/language.ts";
-import { setVoiceToUse } from "../components/dropdown/content/DropdownContent.ts";
+import { setLanguageToUse, setVoiceToUse } from "../components/dropdown/content/DropdownContent.ts";
 import Subsection from "../components/subsection/Subsection.tsx";
-import { useSpeechSynthesis } from "../hooks/speechSynthesis/useSpeechSynthesis.ts";
+import { useSpeechSynthesis, useSpeechSynthesisCookie, useSpeechSynthesisSetCookie, useSpeechSynthesisSetVoiceToPlay, useSpeechSynthesisVoiceCookie, useSpeechSynthesisVoiceSetCookie } from "../hooks/speechSynthesis/useSpeechSynthesis.ts";
+import { useCookies } from 'react-cookie';
 
 const Render = () => {
 
+  const [cookies, setCookie, removeCookie] = useCookies(["speechConfig"]);
   const [dropdown, setDropdown] = useState<boolean>(false);
   const [dropdownVoices, setDropdownVoices] = useState<boolean>(false);
   const [paused, setIsPaused] = useState<boolean>(false);
   const [textToSpeak, setTextToSpeak] = useState<string>("");
-  const [speechSynthesisConfig, setSpeechSynthesisConfig] = useState<SpeechSynthesisUtterance>(SPEECH_CONFIG_DEFAULT);
+  const [speechSynthesisConfig, setSpeechSynthesisConfig] = useState<SpeechSynthesisUtterance>(() => cookies["speechConfig"] || SPEECH_CONFIG_DEFAULT);
   const [speechSynthesisSupport, setSpeechSynthesisSupport] = useState<boolean>(true);
-  const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice>({});
   const [selectedLanguage, setSelectedLanguage] = useState<{ name: "", flagCode: "", langCode: "" }>(LANG_CONFIG);
   const { voices, languages } = useVoices(selectedLanguage.langCode);
+  const [selectedVoice, setSelectedVoice] = useState<{ name: string, voiceURI: string }>({ name: "", voiceURI: "" });
+  const [selectedVoiceToPlay, setSelectedVoiceToPlay] = useState<SpeechSynthesisVoice | null>();
 
   useSpeechSynthesis(setSpeechSynthesisSupport);
 
-  useGSAPDemoPageAnimations();
+  // Speech configuration
+  useSpeechSynthesisCookie(cookies, "speechConfig", setSpeechSynthesisConfig);
+  useSpeechSynthesisSetCookie(speechSynthesisConfig, "speechConfig", setCookie);
 
+  // Speech language configuration
+  useSpeechSynthesisCookie(cookies, "speechLanguageConfig", setSelectedLanguage);
+  useSpeechSynthesisSetCookie(selectedLanguage, "speechLanguageConfig", setCookie);
+
+  // Speech voice configuration
+  useSpeechSynthesisVoiceCookie(cookies, voices, setSelectedVoice, setSelectedVoiceToPlay);
+  useSpeechSynthesisSetVoiceToPlay(cookies, setSelectedVoice, setSelectedVoiceToPlay, voices);
+  useSpeechSynthesisVoiceSetCookie(setCookie, voices, selectedVoice, setSelectedVoiceToPlay);
+
+  useSpeechSynthesisCookie(cookies, "speechContent", setTextToSpeak);
+  useSpeechSynthesisSetCookie(textToSpeak, "speechContent", setCookie);
+
+  useGSAPDemoPageAnimations();
   useGSAPSectionScrollAnimations();
 
   return (
@@ -52,7 +70,7 @@ const Render = () => {
               i18nDropdownText={"demo_section_1_dropdown_opt"} 
               callback={() => speechSynthesisSupport && setDropdown(!dropdown)}
               languagesToMap={languages}
-              callbackDropdown={setVoiceToUse}
+              callbackDropdown={setLanguageToUse}
               setterDropdownCallback={setSelectedLanguage}
               propertyInArray="name"
               toggleHelperText={{ toggleRef: true, i18nHelperText: "demo_section_1_dropdown_helper" }}
@@ -89,11 +107,12 @@ const Render = () => {
               <BlockInfo titleI18next={t('voice')} />  
               <DropdownContainer 
                 dropdownTrigger={dropdownVoices}
-                selectedLanguage={{ name: selectedVoice.voiceURI }}
-                i18nDropdownText={"demo_section_1_dropdown_opt"} 
+                selectedLanguage={selectedVoice}
+                i18nDropdownText={"demo_section_2_voice_dropdown_text"} 
                 callback={() => speechSynthesisSupport && setDropdownVoices(!dropdownVoices)}
                 languagesToMap={voices}
-                callbackDropdown={setSelectedVoice}
+                callbackDropdown={setVoiceToUse}
+                setterDropdownCallback={setSelectedVoice}
                 propertyInArray="name"
                 toggleHelperText={{ toggleRef: true, i18nHelperText: "demo_section_2_voice_dropdown_helper" }}
                 displayIconInTrigger={false}
@@ -104,9 +123,9 @@ const Render = () => {
                 <BlockInfo titleI18next="content" />
                 <Textarea isDisabled={!speechSynthesisSupport} classes={["textarea", "setMaxHeight"]} placeholderI18nText="demo_section_3_textarea_placeholder" contentToShow={textToSpeak} callback={(e) => setTextToSpeak(e.target.value)} />
                 <div className="buttons mt-5">
-                  <FuncButton isDisabled={!speechSynthesisSupport} color="is-success" isOutlined icon={faPlay} textI18n={ t('play_button_text') } callback={() => handleAudioControl('play', paused, textToSpeak, speechSynthesisConfig, selectedVoice, selectedLanguage.langCode)} />
-                  <FuncButton isDisabled={!speechSynthesisSupport} color="is-warning" isOutlined icon={faPause} textI18n={t('pause_button_text')} isPaused={{ pauseRef: paused, textForResuming: t('resume_button_text'), iconForResuming: faEject }} callback={() => { setIsPaused(!paused); handleAudioControl(paused ? 'resume' : 'pause', paused, textToSpeak, speechSynthesisConfig, selectedVoice, selectedLanguage.langCode); }} />
-                  <FuncButton isDisabled={!speechSynthesisSupport} color="is-danger" isOutlined icon={faStop} textI18n={ t('stop_button_text') } callback={() => handleAudioControl('stop', paused, textToSpeak, speechSynthesisConfig, selectedVoice, selectedLanguage.langCode)} />
+                  <FuncButton isDisabled={!speechSynthesisSupport} color="is-success" isOutlined icon={faPlay} textI18n={ t('play_button_text') } callback={() => handleAudioControl('play', paused, textToSpeak, speechSynthesisConfig, selectedVoiceToPlay, selectedLanguage.langCode)} />
+                  <FuncButton isDisabled={!speechSynthesisSupport} color="is-warning" isOutlined icon={faPause} textI18n={t('pause_button_text')} isPaused={{ pauseRef: paused, textForResuming: t('resume_button_text'), iconForResuming: faEject }} callback={() => { setIsPaused(!paused); handleAudioControl(paused ? 'resume' : 'pause', paused, textToSpeak, speechSynthesisConfig, selectedVoiceToPlay, selectedLanguage.langCode); }} />
+                  <FuncButton isDisabled={!speechSynthesisSupport} color="is-danger" isOutlined icon={faStop} textI18n={ t('stop_button_text') } callback={() => handleAudioControl('stop', paused, textToSpeak, speechSynthesisConfig, selectedVoiceToPlay, selectedLanguage.langCode)} />
                 </div>
               </div>
             </div>

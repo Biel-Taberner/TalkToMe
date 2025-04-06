@@ -1,7 +1,6 @@
 import React from "react";
 import BlockInfo from "../block/BlockInfo";
 import SliderInput from "../input/slider/SliderInput";
-import { handleChange } from "../button/FuncButton";
 import SpeechInput from "../input/speech/SpeechInput";
 
 interface SubsectionColumnProps {

@@ -1,7 +1,7 @@
 export function handleAudioControl (action: 'play' | 'stop' | 'pause' | 'resume', paused: boolean, text: string, speechConfig: SpeechSynthesisUtterance, voiceConfig : SpeechSynthesisVoice, langConfig : string) {
   const s = new SpeechSynthesisUtterance(text);
   s.lang = langConfig;
-  s.voice = Object.keys(voiceConfig).length > 0 ? voiceConfig : null;
+  s.voice = voiceConfig;
   s.pitch = speechConfig?.pitch;
   s.rate = speechConfig?.rate;
   s.volume = speechConfig?.volume;

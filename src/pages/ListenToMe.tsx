@@ -9,7 +9,7 @@ import ErrorModal from "../components/error/ErrorModal.tsx";
 import { copyContentButton, startListening, stopListening } from "../components/button/FuncButton.ts";
 import Subsection from "../components/subsection/Subsection.tsx";
 import Textarea from "../components/textarea/Textarea.tsx";
-import { setVoiceToUse } from "../components/dropdown/content/DropdownContent.ts";
+import { setLanguageToUse } from "../components/dropdown/content/DropdownContent.ts";
 import DropdownContainer from "../components/dropdown/container/DropdownContainer.tsx";
 import { LANG_CONFIG } from "../constants/languages/language.ts";
 import BlockInfoList from "../components/block/BlockInfoList.tsx";
@@ -27,7 +27,7 @@ function Render() {
     const [continuousToggler, setContinuousToggler] = useState(false);
     const [voiceCommandsToggler, setVoiceCommandsToggler] = useState(false);
     const { languages } = useVoices(LANG_CONFIG.langCode);
-    const [selectedVoice, setSelectedVoice] = useState(LANG_CONFIG);
+    const [selectedLanguage, setSelectedLanguage] = useState(LANG_CONFIG);
 
     const commands = voiceCommandsToggler ? retrieveCommandsToTrigger() : [];
 
@@ -55,12 +55,12 @@ function Render() {
 
                         <DropdownContainer 
                             dropdownTrigger={dropdown}
-                            selectedLanguage={selectedVoice} 
+                            selectedLanguage={selectedLanguage} 
                             i18nDropdownText={"demo_section_1_dropdown_opt"} 
                             callback={() => browserSupportsSpeechRecognition && setDropdown(!dropdown)}
                             languagesToMap={languages}
-                            callbackDropdown={setVoiceToUse}
-                            setterDropdownCallback={setSelectedVoice}
+                            callbackDropdown={setLanguageToUse}
+                            setterDropdownCallback={setSelectedLanguage}
                             propertyInArray="name"
                             toggleHelperText={{ toggleRef: true, i18nHelperText: "listenToMe_lang_helper_text" }}
                         />
