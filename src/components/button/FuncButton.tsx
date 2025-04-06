@@ -1,6 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useRef } from "react";
+import React from "react";
 import { useGSAPButtonAnimation } from "../../hooks/gsap-animations/useGSAPAnimations";
 import { t } from "i18next";
 

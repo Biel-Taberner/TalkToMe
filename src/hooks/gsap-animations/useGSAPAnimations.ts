@@ -175,6 +175,10 @@ export function useGSAPButtonAnimation() {
 
         if (!buttons.length) return;
 
+        gsap.set([...buttons], {
+            boxShadow: "0px 3px 6px"
+        })
+
         buttons.forEach((btn) => {
             btn.addEventListener("mouseenter", () => {
                 gsap.to(btn, { scale: 1.075, duration: 0.2 });
