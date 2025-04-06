@@ -1,0 +1,18 @@
+@use "sass:color";
+@use "../utilities/colors.scss" as *;
+
+.has-background-info {
+background-color: var(--info-color) !important;
+}
+.has-background-white {
+background-color: var(--bg-color) !important;
+}
+.has-background-grey-lighter {
+background-color: var(--grey-color) !important;
+}
+.has-background-grey {
+background-color: var(--dark-grey-color) !important;
+}
+.has-background-dark {
+background-color: var(--dark-color) !important;
+}

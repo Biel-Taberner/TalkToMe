@@ -1,0 +1,17 @@
+.navbar-items-gap {
+column-gap: 30px;
+}
+
+.navbar-item:hover, .navbar-link:hover {
+background-color: var(--info-color-dark-hover),
+}
+
+.navbar-item:focus {
+background-color: transparent;
+}
+
+.navbar {
+-webkit-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
+}

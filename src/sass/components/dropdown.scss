@@ -1,0 +1,12 @@
+.dropdown-country-item {
+transition: 0.3s;
+}
+
+.dropdown-country-item:hover {
+background-color: darken(white, 5%);
+}
+
+.dropdown-content-height {
+max-height: 200px;
+overflow-y: auto;
+}

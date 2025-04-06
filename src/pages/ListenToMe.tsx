@@ -90,7 +90,7 @@ function Render() {
                                 interimToggler &&
                                     <Textarea contentToShow={interimTranscript} classes={["textarea", "non-resizable", "section-4"]} numRows={1} isDisabled placeholderI18nText="listenToMe_provisional_transcription_placeholder" />
                             }
-                            <Textarea contentToShow={trancriptedContent} classes={["textarea", "section-4"]} isDisabled placeholderI18nText="listenToMe_transcription_placeholder" />
+                            <Textarea contentToShow={trancriptedContent} classes={["textarea", "section-4", "non-resizable"]} isDisabled placeholderI18nText="listenToMe_transcription_placeholder" />
                         </div>
                     </div>
                 </section>

@@ -1,0 +1,7 @@
+.image {
+filter: invert(var(--invert-filter-value));
+transition: 0.3s;
+}
+.image:hover {
+transform: scale(1.1);
+}

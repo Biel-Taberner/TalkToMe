@@ -102,7 +102,7 @@ const Render = () => {
 
               <div className="section-4 mt-6">
                 <BlockInfo titleI18next="content" />
-                <Textarea isDisabled={!speechSynthesisSupport} classes={["textarea"]} placeholderI18nText="demo_section_3_textarea_placeholder" contentToShow={textToSpeak} callback={(e) => setTextToSpeak(e.target.value)} />
+                <Textarea isDisabled={!speechSynthesisSupport} classes={["textarea", "setMaxHeight"]} placeholderI18nText="demo_section_3_textarea_placeholder" contentToShow={textToSpeak} callback={(e) => setTextToSpeak(e.target.value)} />
                 <div className="buttons mt-5">
                   <FuncButton isDisabled={!speechSynthesisSupport} color="is-success" isOutlined icon={faPlay} textI18n={ t('play_button_text') } callback={() => handleAudioControl('play', paused, textToSpeak, speechSynthesisConfig, selectedVoice, selectedLanguage.langCode)} />
                   <FuncButton isDisabled={!speechSynthesisSupport} color="is-warning" isOutlined icon={faPause} textI18n={t('pause_button_text')} isPaused={{ pauseRef: paused, textForResuming: t('resume_button_text'), iconForResuming: faEject }} callback={() => { setIsPaused(!paused); handleAudioControl(paused ? 'resume' : 'pause', paused, textToSpeak, speechSynthesisConfig, selectedVoice, selectedLanguage.langCode); }} />

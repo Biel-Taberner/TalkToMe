@@ -1,84 +1,9 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/bulma";
 
 @forward "utilities";
 @forward "themes";
 
-@use "../components/button/FuncButton.scss";
-@use "../components/input/slider/SliderInput.scss";
-@use "../components/textarea/Textarea.scss";
-
-@use "bulma/bulma";
-
-@use "../components/input/toggler/ThemeToggler.scss";
-
-.has-background-info {
-  background-color: var(--info-color) !important;
-}
-.has-background-white {
-  background-color: var(--bg-color) !important;
-}
-.has-background-grey-lighter {
-  background-color: var(--grey-color) !important;
-}
-.has-background-grey {
-  background-color: var(--dark-grey-color) !important;
-}
-.has-background-dark {
-  background-color: var(--dark-color) !important;
-}
-.image {
-  filter: invert(var(--invert-filter-value));
-  transition: 0.3s;
-}
-.image:hover {
-  transform: scale(1.1);
-}
-
-
-
-.icon-text-gap {
-  column-gap: 12px;
-}
-
-.navbar-items-gap {
-  column-gap: 30px;
-}
-
-.navbar-item:hover, .navbar-link:hover {
-  background-color: var(--info-color-dark-hover),
-}
-
-.navbar-item:focus {
-  background-color: transparent;
-}
-
-.navbar {
-  -webkit-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
-}
-
-.subtitle {
-  line-height: 1.5;
-}
-
-.dropdown-country-item {
-  transition: 0.3s;
-}
-
-.dropdown-country-item:hover {
-  background-color: darken(white, 5%);
-}
-
-.maxWidth {
-  width: 100%;
-}
-
-.dropdown-content-height {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.disable-page {
-  opacity: 0.5;
-}
+@forward "elements";
+@forward "helpers";
+@forward "components";
