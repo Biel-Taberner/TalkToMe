@@ -34,7 +34,7 @@ export default function Footer() {
                         <BlockInfo titleI18next="Talk&ListenToMe" titleContentClasses="title mb-5 has-text-white-bis" displayDescription descriptionContentClasses="subtitle is-4 mb-5 has-text-white-bis" descriptionI18next="footer_subtitle" />
                         <div className="mb-5 is-flex is-justify-content-flex-start icon-text-gap">
                             {
-                                FOOTER_LINKS.map(footerLink => <FooterLink redirectTo={footerLink.redirectTo} imgLogo={footerLink.imgLogo} imgLogoAlt={footerLink?.imgLogoAlt} />)
+                                FOOTER_LINKS.map((footerLink, i) => <FooterLink key={i} redirectTo={footerLink.redirectTo} imgLogo={footerLink.imgLogo} imgLogoAlt={footerLink?.imgLogoAlt} />)
                             }
                         </div>
                         <div className="subtitle is-5 is-flex is-align-items-center icon-text-gap">
