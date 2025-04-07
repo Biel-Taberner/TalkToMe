@@ -89,7 +89,8 @@ const Render = () => {
                   (e) => handleChange('rate', e.target.value, setSpeechSynthesisConfig),
                   (e) => handleChange('pitch', e.target.value, setSpeechSynthesisConfig),
                 ]} 
-                disableTrigger={!speechSynthesisSupport} />
+                disableTrigger={!speechSynthesisSupport} 
+                isChecked={[false, false]} />
               <Subsection
                 speechInputs={[
                   { speechInputFieldKey: "volume", speechInputValue: speechSynthesisConfig.volume, speechInputMinValue: 0, speechInputMaxValue: 1 }
@@ -100,7 +101,8 @@ const Render = () => {
                 callbacks={[
                   (e) => handleChange('volume', e.target.value, setSpeechSynthesisConfig),
                 ]} 
-                disableTrigger={!speechSynthesisSupport} />
+                disableTrigger={!speechSynthesisSupport} 
+                isChecked={[false]} />
             </div>
 
             <div className="section-3 mt-6">

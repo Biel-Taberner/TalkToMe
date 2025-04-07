@@ -16,7 +16,7 @@ export default class LanguageService {
 
     private static jsonToObject(langJson: any, langJsonIndex : number) {
 
-        return new Language(langJsonIndex, langJson.name, langJson.langCode, langJson.flagCode)
+        return new Language(langJsonIndex, langJson.name, langJson.langCode, langJson.flagCode, Boolean(langJson?.isInNavbar))
 
     }
 

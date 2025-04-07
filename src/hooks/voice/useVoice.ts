@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { GET_ALL_LANGUAGES_ROUTE } from "../../constants/api/languageRoutes";
+import LanguageService from "../../services/LanguageService";
 
 export const useVoices = (langCode: string) => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -7,14 +10,11 @@ export const useVoices = (langCode: string) => {
   const { i18n: {language} } = useTranslation();
 
   useEffect(() => {
-    const filterLanguages = () => {
-      const voices = speechSynthesis.getVoices();
-      const uniqueLanguages = [...new Set(voices.map(voice => voice.lang))];
-      const intlDisplay = new Intl.DisplayNames([language], { type: "language" });
-      const languageList = uniqueLanguages.map(langCode => ({
-        langCode,
-        name: intlDisplay.of(langCode) || langCode,
-      }));
+    const filterLanguages = async () => {
+
+      const languagesRes = await LanguageService.findAllLanguages();
+      const languageList = languagesRes;
+
       setLanguages(languageList);
     };
     

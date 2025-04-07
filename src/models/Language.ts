@@ -4,12 +4,14 @@ export default class Language {
     private name : string;
     private langCode : string;
     private flagCode : string;
+    private isInNavbar : boolean;
 
-    constructor(id: number, name: string, langCode: string, flagCode: string) {
+    constructor(id: number, name: string, langCode: string, flagCode: string, isInNavbar : boolean = false) {
         this.id = id;
         this.name = name;
         this.langCode = langCode;
         this.flagCode = flagCode;
+        this.isInNavbar = isInNavbar;
     }
 
     getID() : number {
@@ -42,6 +44,14 @@ export default class Language {
 
     setFlagCode(flagCode: string) {
         this.flagCode = flagCode;
+    }
+
+    getIsInNavbar() : boolean {
+        return this.isInNavbar;
+    }
+
+    setIsInNavbar(isInNavbar: boolean) {
+        this.isInNavbar = isInNavbar;
     }
 
 }
