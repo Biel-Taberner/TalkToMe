@@ -1,6 +1,6 @@
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import Flag from "react-flagkit";
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import { useLanguageDetection } from "../../hooks/language/useLanguageDetection"
 import { handleLanguageChange } from "../../utils/language/handleLanguageChange";
 import { NAVBAR_ROUTES } from "../../constants/ui/navbarRoutes";
 import ThemeToggler from "../input/toggler/ThemeToggler.tsx";
+import { useThemeToggler } from "../../hooks/toggler/useThemeToggler.ts";
 
 export default function Layout() {
 
@@ -26,6 +27,9 @@ export default function Layout() {
             navMenu?.classList.toggle("is-hidden");
         });
     }
+
+    const themeTogglerRef = useRef(null);
+    const [themeToggler, setThemeToggler] = useThemeToggler(themeTogglerRef);
 
     return (
         <nav className="is-fixed-top navbar is-justify-content-space-between p-4 has-background-info" role="navigation" aria-label="main navigation">
@@ -95,7 +99,7 @@ export default function Layout() {
             </div>
 
             <div className="navbar-menu is-flex-grow-0 is-align-items-center icon-text-gap" id="navbarBasicExample">
-                <ThemeToggler />
+                <ThemeToggler isThemeToggled={Boolean(themeToggler)} setThemeToggler={setThemeToggler} />
                 <div className="link-navbar-container">
                     <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link is-size-5">
