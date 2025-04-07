@@ -23,7 +23,7 @@ export default function retrieveCommandsToTrigger() {
             name: `${activate} / ${deactivate} ${darkMode}.`,
             command: darkModeCommand,
             callback: (query : string) => {
-                const themeToChange = query.toLowerCase() === "activar" ? "dark" : "light";
+                const themeToChange = query.toLowerCase() === activate.toLowerCase() ? "dark" : "light";
                 const currentTheme = document.documentElement.getAttribute("data-theme");
 
                 if (currentTheme === themeToChange) {
