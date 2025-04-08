@@ -59,42 +59,18 @@ export default function Layout() {
             <div className="navbar-menu is-flex-grow-0" id="navbarBasicExample">
                 <div className="navbar-start navbar-items-gap columns is-1 is-align-items-center">
 
-                    <div className="link-navbar-container">
-                        <Link to={"/"} className="navbar-item is-size-5">
-                            <div className="letterize-navbar-item">
-                                { t('home') }
+                    {
+                        NAVBAR_ROUTES.map((route: Object, i : number) => (
+                            <div className="link-navbar-container">
+                                <Link key={i} className="navbar-item is-size-5" to={route?.route}>
+                                    <div className="letterize-navbar-item">
+                                        { t(route?.name) }
+                                    </div>
+                                </Link>
+                                <ProgressBar />
                             </div>
-                        </Link>
-                        <ProgressBar />
-                    </div>
-
-                    <div className="link-navbar-container">
-                        <Link to={"/documentation"} className="navbar-item is-size-5 is-justify-content-center">
-                            <div className="letterize-navbar-item">
-                                { t('documentation') }
-                            </div>
-                        </Link>
-                        <ProgressBar />
-                    </div>
-
-                    <div className="link-navbar-container">
-                        <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link is-size-5">
-                                <div className="letterize-navbar-item">
-                                    { t('services') }
-                                </div>
-                            </a>
-
-                            <div className="navbar-dropdown">
-                                {
-                                    NAVBAR_ROUTES.map((route: Object, i : number) => (
-                                        <Link key={i} className="navbar-item" to={route?.route}>{route?.name}</Link>
-                                    ))
-                                }
-                            </div>
-                        </div>
-                        <ProgressBar />
-                    </div>
+                        ))
+                    }
                 </div>
             </div>
 
