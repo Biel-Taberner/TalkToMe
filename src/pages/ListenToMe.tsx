@@ -12,7 +12,6 @@ import Textarea from "../components/textarea/Textarea.tsx";
 import { setLanguageToUse } from "../components/dropdown/content/DropdownContent.ts";
 import DropdownContainer from "../components/dropdown/container/DropdownContainer.tsx";
 import { LANG_CONFIG } from "../constants/languages/language.ts";
-import BlockInfoList from "../components/block/BlockInfoList.tsx";
 import retrieveCommandsToTrigger from "../constants/commands/commands.ts";
 import BlockInfo from "../components/block/BlockInfo.tsx";
 import useTranscriptedContent from "../hooks/voice/useTranscriptedContent.ts";
@@ -66,7 +65,7 @@ function Render() {
                             <ErrorModal icon={faCircleExclamation} contentI18n="browser_not_support_speech_recognition" />
                     }
                     <div className={!browserSupportsSpeechRecognition ? 'disable-page' : ''}>
-                        <BlockInfo titleI18next="ListenToMe" titleContentClasses="section-1 is-capitalized title is-1 mt-6" descriptionI18next="listenToMe_subtitle" descriptionContentClasses="section-1 subtitle mt-3" />
+                        <BlockInfo titleI18next="ListenToMe" titleContentClasses="section-1 is-capitalized title is-1 mt-6" descriptionI18next={["listenToMe_subtitle"]} descriptionContentClasses="section-1 subtitle mt-3" />
 
                         <DropdownContainer 
                             dropdownTrigger={dropdown}
@@ -87,11 +86,11 @@ function Render() {
 
                         {
                             voiceCommandsToggler &&
-                                <BlockInfoList mainTitleI18n="voice_commands_list_title" descriptionI18n="voice_commands_list_subtitle" commandsToDisplay={commands} />
+                                <BlockInfo titleI18next="voice_commands_list_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["voice_commands_list_subtitle"]} descriptionContentClasses="subtitle mt-3" listOfItems={{ items: commands, itemsClasses: "subtitle", itemKeyToShow: "name" }} />
                         }
                         
                         <div className="mt-6 section-3">
-                            <BlockInfo titleI18next="transcription" titleContentClasses="title" displayDescription={false} />
+                            <BlockInfo titleI18next="transcription" titleContentClasses="title" />
                             {
                                 !isMicrophoneAvailable &&
                                     <ErrorModal icon={faCircleExclamation} wantsTopMargin={false} contentI18n="microphone_not_enabled" />

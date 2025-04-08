@@ -7,7 +7,8 @@ import DrawSVGPlugin, { ScrollTrigger } from "gsap/all"
 import SVGIcon from "../components/icon/SVGIcon";
 import { CODE_ICON, MICROPHONE_ICON, PODCAST_ICON, SLIDERS_ICON } from "../constants/icons/svg";
 import { BLUE_COLOR, GREEN_COLOR, RED_COLOR, YELLOW_COLOR } from "../constants/colors/colors";
-import { useGSAPHomePageAnimations } from "../hooks/gsap-animations/useGSAPAnimations";
+import { useGSAPHomePageAnimations, useGSAPSectionScrollAnimations } from "../hooks/gsap-animations/useGSAPAnimations";
+import BlockInfo from "../components/block/BlockInfo";
 
 gsap.registerPlugin(useGSAP, DrawSVGPlugin, ScrollTrigger);
 
@@ -32,61 +33,28 @@ function Render() {
 
     useGSAPHomePageAnimations(iconsRef, referencedSections, colors);
 
+    useGSAPSectionScrollAnimations();
+
     return (
         <div className="content mt-6">
             <section className="section section-scroll">
-                <h1 className="title letterize is-1 mt-6">TalkToMe</h1>
-                <p className="subtitle mt-3">
-                    { t('home_subtitle') }
-                </p>
+                <BlockInfo titleI18next="Talk&ListenToMe" titleContentClasses="title letterize is-1 mt-6" descriptionI18next={["home_subtitle"]} descriptionContentClasses="subtitle mt-3" />
             </section>
 
             <section className="section section-scroll" ref={firstSection}>
-                <div className="is-flex title icon-text-gap is-align-items-center">
-                    <SVGIcon iconInfo={MICROPHONE_ICON} />
-                    <div>{ t('home_section_2_title') }</div>
-                </div>
-                <p className="subtitle mt-3">
-                    { t('home_section_2_subtitle') }
-                </p>
+                <BlockInfo icon={MICROPHONE_ICON} titleI18next="home_section_2_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_2_subtitle"]} descriptionContentClasses="subtitle mt-3" />
             </section>
 
             <section className="section section-scroll" ref={secondSection}>
-                <div className="is-flex title icon-text-gap is-align-items-center">
-                    <SVGIcon iconInfo={PODCAST_ICON} />
-                    <div>{ t('home_section_3_title') }</div>
-                </div>
-                <p className="subtitle mt-3">
-                    { t('home_section_3_subtitle_1') }
-                </p>
-                <p className="subtitle mt-3">
-                    { t('home_section_3_subtitle_2') }
-                </p>
+                <BlockInfo icon={PODCAST_ICON} titleI18next="home_section_3_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_3_subtitle_1", "home_section_3_subtitle_2"]} descriptionContentClasses="subtitle mt-3" />
             </section>
 
             <section className="section section-scroll" ref={thirdSection}>
-                <div className="is-flex title icon-text-gap is-align-items-center"> 
-                    <SVGIcon iconInfo={SLIDERS_ICON} />    
-                    <div>{ t('home_section_4_title') }</div>
-                </div>
-                <p className="subtitle mt-3">
-                    { t('home_section_4_subtitle') }
-                </p>
-                <ul className="subtitle">
-                    <li><Trans i18nKey={"home_section_4_list_1"}/></li>
-                    <li><Trans i18nKey={"home_section_4_list_2"}/></li>
-                    <li><Trans i18nKey={"home_section_4_list_3"}/></li>
-                </ul>
+                <BlockInfo icon={SLIDERS_ICON} hasTransKey={true} titleI18next="home_section_4_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_4_subtitle"]} descriptionContentClasses="subtitle mt-3" listOfItems={{ items: ["home_section_4_list_1", "home_section_4_list_2"], itemsClasses: "subtitle" }} />
             </section>
 
             <section className="section section-scroll" ref={lastSection}>
-                <div className="is-flex title icon-text-gap is-align-items-center">
-                    <SVGIcon iconInfo={CODE_ICON} />
-                    <div>{ t('home_section_5_title') }</div>
-                </div>
-                <p className="subtitle mt-3">
-                    <Trans i18nKey={"home_section_5_subtitle"}/>
-                </p>
+                <BlockInfo icon={CODE_ICON} hasTransKey={true} titleI18next="home_section_5_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_5_subtitle"]} descriptionContentClasses="subtitle mt-3" />
             </section>
         </div>
     )

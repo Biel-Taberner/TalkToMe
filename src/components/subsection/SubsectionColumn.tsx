@@ -22,7 +22,7 @@ interface SpeechInputProps {
 export default function SubsectionColumn({ titleI18next, descriptionI18next, speechInput, disableTrigger, isChecked, callback } : SubsectionColumnProps) {
     return (
         <div className="column">
-            <BlockInfo titleI18next={titleI18next} descriptionI18next={descriptionI18next} />
+            <BlockInfo titleI18next={titleI18next} descriptionI18next={[descriptionI18next]} />
             {
                 speechInput
                 ? <SpeechInput showCurrentValue fieldKey={speechInput?.speechInputFieldKey} type="range" minValue={speechInput?.speechInputMinValue} maxValue={speechInput?.speechInputMaxValue} value={speechInput?.speechInputValue} speechConfigKeyCallback={callback} isDisabled={disableTrigger} />
