@@ -49,7 +49,7 @@ function Render() {
             </section>
 
             <section className="section section-scroll" ref={thirdSection}>
-                <BlockInfo icon={SLIDERS_ICON} hasTransKey={true} titleI18next="home_section_4_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_4_subtitle"]} descriptionContentClasses="subtitle mt-3" listOfItems={{ items: ["home_section_4_list_1", "home_section_4_list_2"], itemsClasses: "subtitle" }} />
+                <BlockInfo icon={SLIDERS_ICON} hasTransKey={true} titleI18next="home_section_4_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_4_subtitle"]} descriptionContentClasses="subtitle mt-3" listOfItems={{ items: ["home_section_4_list_1", "home_section_4_list_2", "home_section_4_list_3"], itemsClasses: "subtitle" }} />
             </section>
 
             <section className="section section-scroll" ref={lastSection}>
