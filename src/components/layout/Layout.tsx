@@ -61,8 +61,8 @@ export default function Layout() {
 
                     {
                         NAVBAR_ROUTES.map((route: Object, i : number) => (
-                            <div className="link-navbar-container">
-                                <Link key={i} className="navbar-item is-size-5" to={route?.route}>
+                            <div key={i} className="link-navbar-container">
+                                <Link className="navbar-item is-size-5" to={route?.route}>
                                     <div className="letterize-navbar-item">
                                         { t(route?.name) }
                                     </div>
