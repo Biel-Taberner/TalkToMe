@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react"
 import Container from "../components/container/Container"
-import { Trans, useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next"
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import DrawSVGPlugin, { ScrollTrigger } from "gsap/all"
-import SVGIcon from "../components/icon/SVGIcon";
 import { CODE_ICON, MICROPHONE_ICON, PODCAST_ICON, SLIDERS_ICON } from "../constants/icons/svg";
 import { BLUE_COLOR, GREEN_COLOR, RED_COLOR, YELLOW_COLOR } from "../constants/colors/colors";
 import { useGSAPHomePageAnimations, useGSAPSectionScrollAnimations } from "../hooks/gsap-animations/useGSAPAnimations";
