@@ -1,6 +1,6 @@
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import Flag from "react-flagkit";
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom";
@@ -11,7 +11,6 @@ import { handleLanguageChange } from "../../utils/language/handleLanguageChange"
 import { NAVBAR_ROUTES } from "../../constants/ui/navbarRoutes";
 import ThemeToggler from "../input/toggler/ThemeToggler.tsx";
 import { useThemeToggler } from "../../hooks/toggler/useThemeToggler.ts";
-import FooterLink from "../footer/links/FooterLink.tsx";
 import { useNavbarLogoImage } from "../../hooks/toggler/useNavbarLogoImage.ts";
 
 export default function Layout() {
