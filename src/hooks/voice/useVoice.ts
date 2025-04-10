@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
-import { GET_ALL_LANGUAGES_ROUTE } from "../../constants/api/languageRoutes";
 import LanguageService from "../../services/LanguageService";
 
 export const useVoices = (langCode: string) => {
