@@ -1,7 +1,12 @@
 .image {
 filter: invert(var(--invert-filter-value));
+}
+.is-hoverable {
 transition: 0.3s;
 }
-.image:hover {
+.logo {
+height: 70px;
+}
+.is-hoverable:hover {
 transform: scale(1.1);
 }

@@ -10,7 +10,7 @@ export default function FooterLink({ redirectTo, imgLogo, imgLogoAlt } : FooterL
     return (
         <div>
             <a target="_blank" href={redirectTo}>
-                <img className="image is-32x32" src={imgLogo} alt={imgLogoAlt} />
+                <img className="is-hoverable image is-32x32" src={imgLogo} alt={imgLogoAlt} />
             </a>
         </div>
     )

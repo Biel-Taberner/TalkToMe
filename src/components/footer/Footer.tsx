@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -13,6 +13,7 @@ import BlockInfo from "../block/BlockInfo.tsx";
 import { FOOTER_LINKS } from "../../constants/footer-links/footerLinks.ts";
 import FooterLink from "./links/FooterLink.tsx";
 import FooterCopyrightContainer from "./copyright-container/FooterCopyrightContainer.tsx";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -31,7 +32,12 @@ export default function Footer() {
             <div className="section has-background-grey">
                 <div className="is-flex is-justify-content-center">
                     <div ref={footerRef} className="is-flex is-flex-direction-column">
-                        <BlockInfo titleI18next="Talk&ListenToMe" titleContentClasses="title mb-5 has-text-white-bis" displayDescription descriptionContentClasses="subtitle is-4 mb-5 has-text-white-bis" descriptionI18next={["footer_subtitle"]} />
+                        <Link to={"/"}>
+                            <div className="is-flex is-justify-content-center">
+                                <img className="is-hoverable" width={256} src="talk&listentome_logo_white.png" />
+                            </div>
+                        </Link>
+                        <BlockInfo descriptionContentClasses="subtitle is-4 mb-5 mt-5 has-text-white-bis" descriptionI18next={["footer_subtitle"]} />
                         <div className="mb-5 is-flex is-justify-content-flex-start icon-text-gap">
                             {
                                 FOOTER_LINKS.map((footerLink, i) => <FooterLink key={i} redirectTo={footerLink.redirectTo} imgLogo={footerLink.imgLogo} imgLogoAlt={footerLink?.imgLogoAlt} />)
