@@ -41,7 +41,7 @@ function Render() {
             </section>
 
             <section className="section section-scroll" ref={firstSection}>
-                <BlockInfo icon={MICROPHONE_ICON} titleI18next="home_section_2_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_2_subtitle"]} descriptionContentClasses="subtitle mt-3" />
+                <BlockInfo icon={MICROPHONE_ICON} hasTransKey={true} titleI18next="home_section_2_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_2_subtitle"]} descriptionContentClasses="subtitle mt-3" />
             </section>
 
             <section className="section section-scroll" ref={secondSection}>
@@ -53,7 +53,8 @@ function Render() {
             </section>
 
             <section className="section section-scroll" ref={lastSection}>
-                <BlockInfo icon={CODE_ICON} hasTransKey={true} titleI18next="home_section_5_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_5_subtitle"]} descriptionContentClasses="subtitle mt-3" />
+                <BlockInfo icon={CODE_ICON} hasTransKey={true} titleI18next="home_section_5_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_5_subtitle"]} descriptionContentClasses="subtitle mt-3" listOfItems={{ items: ["home_section_5_list_1", "home_section_5_list_2"], itemsClasses: "subtitle" }} />
+                <BlockInfo hasTransKey={true} titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["home_section_5_subtitle_2"]} descriptionContentClasses="subtitle mt-3" />
             </section>
         </div>
     )
