@@ -18,15 +18,8 @@ export default function Layout() {
     const [currentLanguage, setCurrentLanguage] = useState<Language>();
     const { languages } = useLanguageDetection<Language>(setCurrentLanguage);
 
-    const toggleBurgerMenu = () => {
-        const navbarBuger = document.getElementById("navbarBurger");
-        const navMenu = document.getElementById("navMenu");
-
-        navbarBuger?.addEventListener("click", () => { 
-            navMenu?.classList.toggle("is-active");
-            navMenu?.classList.toggle("is-hidden");
-        });
-    }
+    const [active, setActive] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(false);
 
     const themeTogglerRef = useRef(null);
     const [themeToggler, setThemeToggler] = useThemeToggler(themeTogglerRef);
@@ -41,7 +34,7 @@ export default function Layout() {
                     </svg>
                 </a>
 
-                <a role="button" className="navbar-burger" id="navbarBurger" data-target="navMenu" aria-label="menu" aria-expanded="false" onClick={toggleBurgerMenu}>
+                <a role="button" className={`navbar-burger ${active && "is-active"}`} id="navbarBurger" data-target="navMenu" aria-label="menu" aria-expanded="false" onClick={() => setActive(prevState => prevState = !prevState)}>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -49,50 +42,52 @@ export default function Layout() {
                 </a>
             </div>
 
-            <div className="navbar-menu has-background-info is-hidden" id="navMenu">
-                <div className="navbar-end">
-                    <a className="navbar-item">My account</a>
-                    <a className="navbar-item">Shopping Cart (0)</a>
-                </div>
-            </div>
-
-            <div className="navbar-menu is-flex-grow-0" id="navbarBasicExample">
-                <div className="navbar-start navbar-items-gap columns is-1 is-align-items-center">
+            <div className={`${!active && "navbar-menu"} is-flex-grow-0 ${active && 'is-active'}`} style={{ backgroundColor: "transparent", boxShadow: "unset" }} id="navbarBasicExample">
+                <div className={`navbar-start navbar-items-gap ${!active && "columns"} is-1 is-align-items-center`}>
 
                     {
                         NAVBAR_ROUTES.map((route: Object, i : number) => (
-                            <div key={i} className="link-navbar-container">
-                                <Link className="navbar-item is-size-5" to={route?.route}>
-                                    <div className="letterize-navbar-item">
-                                        { t(route?.name) }
-                                    </div>
-                                </Link>
-                                <ProgressBar />
+                            <div key={i} className={`is-flex ${active && "mt-3"}`} style={{ width: "100%" }}>
+                                <div className="link-navbar-container">
+                                    <Link className="navbar-item is-size-5" to={route?.route}>
+                                        <div className="letterize-navbar-item">
+                                            { t(route?.name) }
+                                        </div>
+                                    </Link>
+                                    <ProgressBar />
+                                </div>
                             </div>
                         ))
                     }
                 </div>
             </div>
 
-            <div className="navbar-menu is-flex-grow-0 is-align-items-center icon-text-gap" id="navbarBasicExample">
-                <ThemeToggler isThemeToggled={Boolean(themeToggler)} setThemeToggler={setThemeToggler} />
+            <div className={`navbar-menu is-flex-grow-0 is-align-items-center icon-text-gap ${active && "is-active"}`} id="navbarBasicExample" style={{ backgroundColor: "transparent", boxShadow: "unset" }}>
+                <ThemeToggler classes="p-3" isThemeToggled={Boolean(themeToggler)} setThemeToggler={setThemeToggler} />
                 <div className="link-navbar-container">
-                    <div className="navbar-item has-dropdown is-hoverable">
-                        <a className="navbar-link is-size-5">
+                    <div className={`navbar-item has-dropdown ${activeDropdown ? 'is-active' : ''}`}>
+                        <a className={`navbar-link is-size-5 is-flex`} onClick={() => setActiveDropdown(!activeDropdown)}>
                             <FontAwesomeIcon icon={faLanguage} size="lg" />
                             <Flag country={currentLanguage?.getFlagCode()} />
                         </a>
 
-                        <div className="navbar-dropdown is-right">
-                            {
-                                languages.map((lang : any, i : number) => (
-                                    <a key={i} className="navbar-item is-capitalized" onClick={() => handleLanguageChange(lang, languages, setCurrentLanguage)}>
-                                        <Flag country={lang.getFlagCode()} />
-                                        { lang.getName() }
-                                    </a>
-                                ))
-                            }
-                        </div>
+                        {
+                            activeDropdown &&
+                                <div className="navbar-dropdown is-right">
+                                    {
+                                        languages.map((lang : any, i : number) => (
+                                            <div key={i} className="is-flex px-3 py-2 navbar-dropdown-item is-capitalized" style={{ cursor: "pointer" }} onClick={() => handleLanguageChange(lang, languages, setCurrentLanguage)}>
+                                                <div>
+                                                    <Flag country={lang.getFlagCode()} />
+                                                </div>
+                                                <div>
+                                                    { lang.getName() }
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                        }
                     </div>
                     <ProgressBar />
                 </div>

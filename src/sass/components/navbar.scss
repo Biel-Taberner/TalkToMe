@@ -19,3 +19,27 @@ box-shadow: 0px 0.15px 10px 0px rgba(0,0,0,0.75);
 .navbar-link:not(.is-arrowless)::after {
 border-color: unset;
 }
+
+.navbar-burger {
+color: unset;
+}
+
+.navbar-dropdown-item {
+gap: 0.75rem;
+}
+
+.navbar-dropdown-item {
+background-color: transparent;
+color: var(--current-color); // o directamente `color: currentColor;`
+
+&:hover {
+background-color: rgba(0, 0, 0, 0.05); // oscurece sutilmente el fondo
+}
+
+@media (prefers-color-scheme: dark) {
+&:hover {
+background-color: rgba(255, 255, 255, 0.1); // aclara en modo oscuro
+}
+}
+}
+  

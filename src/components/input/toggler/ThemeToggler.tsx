@@ -5,14 +5,15 @@ import { changeTheme } from "./ThemeToggler.ts";
 
 interface ThemeTogglerProps {
     isThemeToggled: boolean;
+    classes: string;
     setThemeToggler: (...args : any) => void;
 }
 
-export default function ThemeToggler({ isThemeToggled = true, setThemeToggler } : ThemeTogglerProps) {
+export default function ThemeToggler({ isThemeToggled = true, setThemeToggler, classes } : ThemeTogglerProps) {
 
     return (
         <div>
-            <div>
+            <div className={classes}>
                 <input type="checkbox" className="checkbox" id="checkbox" checked={isThemeToggled} onChange={(e) => changeTheme(e, setThemeToggler)} />
                 <label htmlFor={"checkbox"} className="checkbox-label">
                     <FontAwesomeIcon icon={faMoon} />
