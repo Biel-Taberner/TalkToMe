@@ -42,12 +42,12 @@ export default function Layout() {
                 </a>
             </div>
 
-            <div className={`${!active && "navbar-menu"} is-flex-grow-0 ${active && 'is-active'}`} style={{ backgroundColor: "transparent", boxShadow: "unset" }} id="navbarBasicExample">
+            <div className={`${!active && "navbar-menu"} is-flex-grow-0 is-shadowless has-background-transparent ${active && 'is-active'}`} id="navbarBasicExample">
                 <div className={`navbar-start navbar-items-gap ${!active && "columns"} is-1 is-align-items-center`}>
 
                     {
                         NAVBAR_ROUTES.map((route: Object, i : number) => (
-                            <div key={i} className={`is-flex ${active && "mt-3"}`} style={{ width: "100%" }}>
+                            <div key={i} className={`is-flex ${active && "mt-3"} maxWidth`}>
                                 <div className="link-navbar-container">
                                     <Link className="navbar-item is-size-5" to={route?.route}>
                                         <div className="letterize-navbar-item">
@@ -62,7 +62,7 @@ export default function Layout() {
                 </div>
             </div>
 
-            <div className={`navbar-menu is-flex-grow-0 is-align-items-center icon-text-gap ${active && "is-active"}`} id="navbarBasicExample" style={{ backgroundColor: "transparent", boxShadow: "unset" }}>
+            <div className={`navbar-menu is-flex-grow-0 is-align-items-center icon-text-gap is-shadowless has-background-transparent ${active && "is-active"}`} id="navbarBasicExample">
                 <ThemeToggler classes="p-3" isThemeToggled={Boolean(themeToggler)} setThemeToggler={setThemeToggler} />
                 <div className="link-navbar-container">
                     <div className={`navbar-item has-dropdown ${activeDropdown ? 'is-active' : ''}`}>
@@ -76,7 +76,7 @@ export default function Layout() {
                                 <div className="navbar-dropdown is-right">
                                     {
                                         languages.map((lang : any, i : number) => (
-                                            <div key={i} className="is-flex px-3 py-2 navbar-dropdown-item is-capitalized is-clickable" style={{ cursor: "pointer" }} onClick={() => handleLanguageChange(lang, languages, setCurrentLanguage)}>
+                                            <div key={i} className="is-flex px-3 py-2 navbar-dropdown-item is-capitalized is-clickable" onClick={() => handleLanguageChange(lang, languages, setCurrentLanguage)}>
                                                 <div>
                                                     <Flag country={lang.getFlagCode()} />
                                                 </div>
