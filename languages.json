@@ -2,21 +2,6 @@
     "langs": [
         {"langCode":"es-ES","name":"Spanish","flagCode":"ES","isInNavbar": 1},
         {"langCode":"en-US","name":"English","flagCode":"US","isInNavbar": 1},
-        {"langCode":"de-DE","name":"German","flagCode":"DE","isInNavbar": 1},
-        {"langCode":"en-GB","name":"British English"},
-        {"langCode":"es-US","name":"Spanish (United States)"},
-        {"langCode":"fr-FR","name":"French (France)"},
-        {"langCode":"hi-IN","name":"Hindi (India)"},
-        {"langCode":"id-ID","name":"Indonesian (Indonesia)"},
-        {"langCode":"it-IT","name":"Italian (Italy)"},
-        {"langCode":"ja-JP","name":"Japanese (Japan)"},
-        {"langCode":"ko-KR","name":"Korean (South Korea)"},
-        {"langCode":"nl-NL","name":"Dutch (Netherlands)"},
-        {"langCode":"pl-PL","name":"Polish (Poland)"},
-        {"langCode":"pt-BR","name":"Brazilian Portuguese"},
-        {"langCode":"ru-RU","name":"Russian (Russia)"},
-        {"langCode":"zh-CN","name":"Chinese (China)"},
-        {"langCode":"zh-HK","name":"Chinese (Hong Kong)"},
-        {"langCode":"zh-TW","name":"Chinese (Taiwan)"}
+        {"langCode":"de-DE","name":"German","flagCode":"DE","isInNavbar": 1}
     ]
 }

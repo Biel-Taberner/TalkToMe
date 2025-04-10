@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../components/container/Container";
 import { faCheck, faCircleExclamation, faCopy, faMicrophone, faMicrophoneSlash, faTrash } from "@fortawesome/free-solid-svg-icons";
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { useVoices } from "../hooks/voice/useVoice";
 import FuncButton from "../components/button/FuncButton.tsx";
 import { useGSAPDemoPageAnimations, useGSAPSectionScrollAnimations } from "../hooks/gsap-animations/useGSAPAnimations.ts";

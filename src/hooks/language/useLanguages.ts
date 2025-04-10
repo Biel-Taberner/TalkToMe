@@ -5,7 +5,7 @@ export function useLanguage<Language>() {
     const [languages, setLanguages] = useState<Language[]>([]);
 
     const fetchData = useCallback(async () => {
-        const data = await LanguageService.findAllLanguages();
+        const data = await LanguageService.findAllLanguagesForNavbar();
         
         const navbarLanguages = data
         .map((lang) => {
