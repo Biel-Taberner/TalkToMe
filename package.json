@@ -8,7 +8,8 @@
     "serve": "vite preview",
     "test": "vitest run",
     "build-bulma": "sass --load-path=node_modules ./src/sass/index.scss ./dist/css/index.css",
-    "watch-bulma": "npm run build-bulma -- --watch"
+    "watch-bulma": "npm run build-bulma -- --watch",
+    "deploy-gh-pages": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -41,6 +42,7 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "gh-pages": "^6.3.0",
     "gulp": "^5.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-sass": "^6.0.1",
