@@ -9,7 +9,7 @@ import ListenToMe from "./pages/ListenToMe.tsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/TalkToMe/">
       <Layout />
       <Routes>
         <Route path="/">

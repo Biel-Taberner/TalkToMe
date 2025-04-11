@@ -58,7 +58,7 @@
         "listenToMe_voice_commands_description": "Voice commands allow you to perform actions quickly and easily. You will find a list of all available commands to execute below.",
         "microphone_not_enabled": "Your microphone is not enabled. Please, enable it to start transcribing your voice.",
         "voice_commands_list_title": "List of Available Voice Commands",
-        "voice_commands_list_subtitle": "Here you will find a series of commands that allow you to perform various actions.",
+        "voice_commands_list_subtitle": "Here you will find a series of commands that will allow you to perform various actions. The <strong>*</strong> implies any website or content you want to search for, such as: <strong>Google</strong>, <strong>Youtube</strong>, <strong>Facebook</strong>, ...",
         "voice_commands_command_1": "Open *",
         "voice_commands_command_2": "Search for * on Google",
         "footer_subtitle": "Explore, edit and transcript audios.",

@@ -58,7 +58,7 @@
         "listenToMe_voice_commands_description": "Los comandos de voz permiten realizar acciones de manera rápida y sencilla. Con esta opción activada, podrá encontrar más abajo un listado de todos los comandos disponibles a ejecutar.",
         "microphone_not_enabled": "Su micrófono no está habilitado. Por favor, habilítelo para poder empezar a transcribir su voz.",
         "voice_commands_list_title": "Lista de comandos de voz disponibles",
-        "voice_commands_list_subtitle": "Aquí encontrarás una serie de comandos que te permitiran realizar diversas acciones.",
+        "voice_commands_list_subtitle": "Aquí encontrarás una serie de comandos que te permitirán realizar diversas acciones. El <strong>*</strong> implica cualquier web o contenido que quieras buscar, como por ejemplo: <strong>Google</strong>, <strong>Youtube</strong>, <strong>Facebook</strong>, ...",
         "voice_commands_command_1": "Abrir *",
         "voice_commands_command_2": "Buscar * en Google",
         "footer_subtitle": "Explora, edita y transcribe audios.",

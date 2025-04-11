@@ -79,14 +79,14 @@ function Render() {
                             toggleHelperText={{ toggleRef: true, i18nHelperText: "listenToMe_lang_helper_text" }}
                         />
 
-                        <div className="mt-6 section-2">
+                        <div className="mt-6 section-2 mb-6">
                             <Subsection isChecked={[interimToggler, continuousToggler]} numOfSubsections={2} titleI18next={["provisional_transcription", "continuity"]} subsectionDescriptionI18next={["listenToMe_interimResult_description", "listenToMe_continuity_description"]} disableTrigger={!browserSupportsSpeechRecognition} callbacks={[() => setInterimToggler(!interimToggler), () => setContinuousToggler(!continuousToggler)]} />
                             <Subsection isChecked={[voiceCommandsToggler]} numOfSubsections={1} titleI18next={["voice_commands"]} subsectionDescriptionI18next={["listenToMe_voice_commands_description"]} disableTrigger={!browserSupportsSpeechRecognition} callbacks={[() => setVoiceCommandsToggler(!voiceCommandsToggler)]} />
                         </div>
 
                         {
                             voiceCommandsToggler &&
-                                <BlockInfo titleI18next="voice_commands_list_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["voice_commands_list_subtitle"]} descriptionContentClasses="subtitle mt-3" listOfItems={{ items: commands, itemsClasses: "subtitle", itemKeyToShow: "name" }} />
+                                <BlockInfo hasTransKey titleI18next="voice_commands_list_title" titleContentClasses="is-flex title icon-text-gap is-align-items-center" descriptionI18next={["voice_commands_list_subtitle"]} descriptionContentClasses="subtitle mt-3" listOfItems={{ items: commands, itemsClasses: "subtitle", itemKeyToShow: "name" }} />
                         }
                         
                         <div className="mt-6 section-3">

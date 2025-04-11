@@ -58,7 +58,7 @@
         "listenToMe_voice_commands_description": "Sprachbefehle ermöglichen es, Aktionen schnell und einfach auszuführen. Unten finden Sie eine Liste aller verfügbaren Befehle, die ausgeführt werden können.",
         "microphone_not_enabled": "Ihr Mikrofon ist nicht aktiviert. Bitte aktivieren Sie es, um mit der Transkription Ihrer Stimme zu beginnen.",
         "voice_commands_list_title": "Liste der verfügbaren Sprachbefehle",
-        "voice_commands_list_subtitle": "Hier findest du eine Reihe von Befehlen, mit denen du verschiedene Aktionen ausführen kannst.",
+        "voice_commands_list_subtitle": "Hier findest du eine Reihe von Befehlen, mit denen du verschiedene Aktionen ausführen kannst. Das <strong>*</strong> steht für jede Website oder jeden Inhalt, den du suchen möchtest, wie zum Beispiel: <strong>Google</strong>, <strong>Youtube</strong>, <strong>Facebook</strong>, ...",
         "voice_commands_command_1": "Öffnen *",
         "voice_commands_command_2": "Suche * bei Google",
         "footer_subtitle": "Erkunden, bearbeiten und transkribieren Sie Audios.",
